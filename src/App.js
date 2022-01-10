@@ -10,13 +10,13 @@ import Data_P from "./page/admin/data_peserta";
 function App() {
   return (
     <div className="App">
-      {/* <Dashboard1/> */}
-      {/* <Profile/> */}
-      {/* <A_Dashboard/> */}
-      {/* <M_Dashboard/> */}
-      {/* <M_detail/>  */}
-      {/* <Data_M/> */}
-      <Data_P/>
+      {/* <Dashboard1 />
+      <Profile /> */}
+      {/* <A_Dashboard /> */}
+      <M_Dashboard />
+      {/* <M_detail />
+      <Data_M />
+      <Data_P /> */}
     </div>
   );
 }
