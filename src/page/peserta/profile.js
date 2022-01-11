@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar1 from "../../components/navbar";
 import { Col, Row, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Table from "react-bootstrap/Table";
 
@@ -14,10 +15,12 @@ const Profile = () => {
         {/* back */}
         <Row>
           <Col className="d-flex" md={3}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={25} height={35}>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-            <h5 className="d-flex align-items-center">Back</h5>
+            <Link to="/" >    
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={25} height={35}>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+              <h5 className="d-flex align-items-center">Back</h5>
+            </Link>
           </Col>
           <Col md={9}>
             <p>&nbsp;</p>

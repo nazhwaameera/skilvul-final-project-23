@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Routes, Route } from "react-router-dom";
 import Dashboard1 from "./page/peserta/dashboard";
 import Profile from "./page/peserta/profile";
 import A_Dashboard from "./page/admin/dashboard";
@@ -9,14 +10,13 @@ import Data_P from "./page/admin/data_peserta";
 
 function App() {
   return (
-    <div className="App">
-      {/* <Dashboard1 />
-      <Profile /> */}
-      {/* <A_Dashboard /> */}
-      <M_Dashboard />
-      {/* <M_detail />
-      <Data_M />
-      <Data_P /> */}
+    <div>
+      <Routes>
+        <Route path="/" element={<Dashboard1/>} />
+        <Route path="/Profile" element={<Profile/>} />
+        <Route path="/Admin" element={<A_Dashboard/>} />
+        <Route path="/Mentor" element={<M_Dashboard/>} />
+      </Routes>
     </div>
   );
 }
