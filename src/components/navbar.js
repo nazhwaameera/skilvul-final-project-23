@@ -6,13 +6,13 @@ const Navbar1 = ({ name }) => {
   return (
     <Navbar bg="light" variant="light" expand="lg">
       <Container className="d-flex">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/home">
           <img src={logo} alt="logo" width={153} height={39} />
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end me-auto">
           {/* profile */}
-          <Nav.Link href="#profile" style={{ backgroundColor: "#E7E7EA", borderRadius: "10px", padding: "5px 10px 5px 2px" }}>
+          <Nav.Link href="/profile" style={{ backgroundColor: "#E7E7EA", borderRadius: "10px", padding: "5px 10px 5px 2px", position:"absolute", left:"41%", right:"41%", display:"flex" ,justifyContent:"center" }}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={30} height={20}>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>

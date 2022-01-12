@@ -7,14 +7,24 @@ import M_Dashboard from "./page/mentor/dashboard";
 import M_detail from "./page/mentor/detail-pekerjaan";
 import Data_M from "./page/admin/data_mentor";
 import Data_P from "./page/admin/data_peserta";
+import Onboarding from "./Onboarding";
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Dashboard1/>} />
+        <Route path="/" element={<Onboarding/>} />
+
+        {/* peserta */}
+        <Route path="/home" element={<Dashboard1/>} />
         <Route path="/Profile" element={<Profile/>} />
+
+        {/* admin */}
         <Route path="/Admin" element={<A_Dashboard/>} />
+        <Route path="/Data_Mentor" element={<Data_M/>} />
+        <Route path="/Data_Peserta" element={<Data_P/>} />
+
+        {/* mentor */}
         <Route path="/Mentor" element={<M_Dashboard/>} />
       </Routes>
     </div>

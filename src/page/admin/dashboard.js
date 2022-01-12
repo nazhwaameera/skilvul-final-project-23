@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar1 from "../../components/navbar";
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 
 const A_Dashboard = () => {
@@ -34,67 +35,71 @@ const A_Dashboard = () => {
                     <br/>
 
                     {/* Mentor */}
-                    <Row>
-                        <Col md={1}></Col>
-                        <Col md={10}>
-                            <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                <th>Mentor</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <td>Agus Iskandar</td>
-                                <td>Agus@mail.com</td>
-                                </tr>
+                    <Link to="/Data_Mentor" >
+                        <Row>
+                            <Col md={1}></Col>
+                            <Col md={10}>
+                                <Table striped bordered hover>
+                                <thead>
+                                    <tr>
+                                    <th>Mentor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <td>Agus Iskandar</td>
+                                    <td>Agus@mail.com</td>
+                                    </tr>
 
-                                <tr>
-                                <td>Asep Sulaiman</td>
-                                <td>Asep@mail.com</td>
-                                </tr>
+                                    <tr>
+                                    <td>Asep Sulaiman</td>
+                                    <td>Asep@mail.com</td>
+                                    </tr>
 
-                                <tr>
-                                <td>Alex Turner</td>
-                                <td>Alex@yuhuu.com</td>
-                                </tr>
-                            </tbody>
-                            </Table>
-                        </Col>
-                        <Col md={1}></Col>
-                    </Row>
+                                    <tr>
+                                    <td>Alex Turner</td>
+                                    <td>Alex@yuhuu.com</td>
+                                    </tr>
+                                </tbody>
+                                </Table>
+                            </Col>
+                            <Col md={1}></Col>
+                        </Row>
+                    </Link>
                     <br/>
 
                     {/* Peserta */}
-                    <Row>
-                        <Col md={1}></Col>
-                        <Col md={10}>
-                            <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                <th>Peserta</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <td>Uus Andara</td>
-                                <td>us@mail.com</td>
-                                </tr>
+                    <Link to="/Data_Peserta" >
+                        <Row>
+                            <Col md={1}></Col>
+                            <Col md={10}>
+                                <Table striped bordered hover>
+                                <thead>
+                                    <tr>
+                                    <th>Peserta</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <td>Uus Andara</td>
+                                    <td>us@mail.com</td>
+                                    </tr>
 
-                                <tr>
-                                <td>September Iman</td>
-                                <td>Sep@mail.com</td>
-                                </tr>
+                                    <tr>
+                                    <td>September Iman</td>
+                                    <td>Sep@mail.com</td>
+                                    </tr>
 
-                                <tr>
-                                <td>Alexa indah</td>
-                                <td>lex.sds@sddd.com</td>
-                                </tr>
-                            </tbody>
-                            </Table>
-                        </Col>
-                        <Col md={1}></Col>
-                    </Row>
+                                    <tr>
+                                    <td>Alexa indah</td>
+                                    <td>lex.sds@sddd.com</td>
+                                    </tr>
+                                </tbody>
+                                </Table>
+                            </Col>
+                            <Col md={1}></Col>
+                        </Row>
+                    </Link>
                     <br/>
                 </Col>
                 <Col md={1}></Col>
