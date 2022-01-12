@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
 import ButtonItem from "./components/Button/button";
 import Remedial from "./image/Remedial.png";
+import Popup from "./page/login";
 
 const Onboarding = () => {
     return (
@@ -13,9 +14,12 @@ const Onboarding = () => {
                 <Col md={4}>
                     <Row>
                         <Image src={Remedial} width={526} height={430} fluid />
-                        <Link to="/home" >
-                            <ButtonItem title="Get Started" radius="20px" variant="outline-dark"/>
-                        </Link>
+                        <div className="d-flex justify-content-center mb-3">
+                            <Link to="/home" >
+                                <ButtonItem title="Get Started" style={{borderRadius: "100px"}}/>
+                            </Link>
+                            <Popup/>
+                        </div>
                     </Row>
                 </Col>
                 <Col md={4}/>

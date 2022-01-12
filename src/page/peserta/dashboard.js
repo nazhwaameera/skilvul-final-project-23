@@ -17,9 +17,9 @@ const Dashboard1 = () => {
       <Container>
         <Row>
           <Col md={4} sm={6} className="button1">
-            <Row>
+            <Row>           
               <Link to="/Profile" >
-                <ButtonItem title="Profile" radius="20px" href="#profile" />
+                <ButtonItem title="Profile" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}}/>
               </Link>
               <p>&nbsp;</p>
               <ButtonItem title="Quest" radius="20px" href="#quest"/>
@@ -28,13 +28,14 @@ const Dashboard1 = () => {
               <p>&nbsp;</p>
             </Row>
           </Col>
-          <Col md={4} sm={6} className="button1">
+          <Col md={4} sm={6} style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
             <img 
                      src={people} alt="user"
                      width={128} height={369}
+                     
                      />
           </Col>
-          <Col md={4} sm={6} className="button1">
+          <Col md={4} sm={6}>
             <Row>
               <ButtonItem title="Feedbacks" radius="20px" href="#feedbacks"/>
               <p>&nbsp;</p>

@@ -14,7 +14,7 @@ const Profile = () => {
       <Container>
         {/* back */}
         <Row>
-          <Col className="d-flex" md={3}>
+          <Col className="d-flex justify-content-start" md={3}>
             <Link to="/home" >    
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={25} height={35}>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
