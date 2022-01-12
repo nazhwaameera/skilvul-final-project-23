@@ -8,13 +8,12 @@ const jwt = require("jsonwebtoken");
 const Admin = require("../models/admin");
 const Peserta = require("../models/peserta");
 const Mentor = require("../models/mentor");
-const MapsModel = require("../models/maps");
 
 class AdminController {
   static async getAdmins(req, res) {
     try {
       const adminsList = await Admin.find();
-      console.log(adminsList)
+      console.log(adminsList);
       res.status(200).send(adminsList);
     } catch (error) {
       res.status(500).send({ err: error });
@@ -45,10 +44,10 @@ class AdminController {
       } else {
         console.log("Mentor id is not exist.");
       }
-    //   const token = getSignedToken(newPeserta);
-    //   res.status(200).json({
-    //     token,
-    //   });
+      //   const token = getSignedToken(newPeserta);
+      //   res.status(200).json({
+      //     token,
+      //   });
     } catch (error) {
       error.status = 400;
       next(error);
@@ -64,15 +63,15 @@ class AdminController {
           message: "email already in use!",
         },
       });
-        
+
     // gimana cara nambahin ke peserta ke dalam peserta asuh?
     const newMentor = new Mentor({ nama, email, password, no_telp, peserta_asuh });
     try {
       await newMentor.save();
-    //   const token = getSignedToken(newMentor);
-    //   res.status(200).json({
-    //     token,
-    //   });
+      //   const token = getSignedToken(newMentor);
+      //   res.status(200).json({
+      //     token,
+      //   });
     } catch (error) {
       error.status = 400;
       next(error);
