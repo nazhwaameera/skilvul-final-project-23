@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 const Admin = require("../models/admin");
 const Peserta = require("../models/peserta");
 const Mentor = require("../models/mentor");
-const MapsModel = require("../models/maps");
 
 class AdminController {
   static async getAdmins(req, res) {
@@ -79,6 +78,30 @@ class AdminController {
     }
   }
 
+  static async createAdmin(req, res, next) {
+    const { email, password } = req.body;
+    const admin = await Admin.findOne({ email });
+    if (admin)
+      return res.status(403).json({
+        error: {
+          message: "email already in use!",
+        },
+      });
+        
+    // gimana cara nambahin ke peserta ke dalam peserta asuh?
+    const newAdmin = new Admin({ email, password });
+    try {
+      await newAdmin.save();
+       const token = getSignedToken(newAdmin);
+       res.status(200).json({
+        token,
+       });
+    } catch (error) {
+      error.status = 400;
+      next(error);
+    }
+  }
+
   static async loginAdmin(req, res) {
     try {
       const { email, password } = req.body;
@@ -86,13 +109,13 @@ class AdminController {
       if (!admin)
         return res.status(403).json({
           error: {
-            message: "invalid email/password",
+            message: "invalid email/password, not admin",
           },
         });
       const isValid = await admin.isPasswordValid(password);
       if (!isValid)
         return res.status(403).json({
-          error: { message: "invalid email/password" },
+          error: { message: "invalid email/password, password not valid" },
         });
       const token = getSignedToken(admin);
       res.status(200).json({

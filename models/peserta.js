@@ -29,7 +29,7 @@ const pesertaSchema = new Schema(
     exp: {
         type: Number,
     },
-    mentor_id: [{ type: Schema.Types.ObjectId, ref: "Mentor" }],
+    mentor_id: { type: Schema.Types.ObjectId, ref: "Mentor" },
     quests: [{ type: Schema.Types.ObjectId, ref: "Quest" }],
     achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
     todos: [{ type: Schema.Types.ObjectId, ref: "Todo" }],
