@@ -84,9 +84,9 @@ class MentorController {
         const konten = body.konten;
   
         const feedback = new Feedback({
-          id_peserta = id_peserta,
-          id_mentor = id_mentor,
-          id_quest = id_quest,
+          id_peserta: id_peserta,
+          id_mentor: id_mentor,
+          id_quest: id_quest,
           konten: konten
         });
   

@@ -54,17 +54,22 @@ class AdminController {
 
     const newPeserta = new Peserta({ nama, email, password, kelas, asal_sekolah, mentor_id });
     try {
-      await newPeserta.save();
-      const mentor = await Mentor.countDocuments({ _id: req.body.mentor_id });
+      await newPeserta.save(async(err, peserta) => {
+        console.log("ini data peserta", peserta._id)
+        await Mentor.findOneAndUpdate({ _id: req.body.mentor_id }, { $addToSet: { peserta_asuh: peserta._id } }, { new: true });
+      });
+      // const mentor = await Mentor.countDocuments({ _id: req.body.mentor_id });
       res.status(200).send(newPeserta);
       //console.log(maps)
 
-      let result;
-      if (mentor) {
-        result = await Mentor.findOneAndUpdate({ _id: req.body.mentor_id }, { $addToSet: { peserta_asuh: req.body._id } }, { new: true });
-      } else {
-        console.log("Mentor id is not exist.");
-      }
+      // let result;
+      // if (mentor) {
+      //   console.log("update mentor")
+      //   result = 
+      //   console.log(newPeserta._id)
+      // } else {
+      //   console.log("Mentor id is not exist.");
+      // }
       //   const token = getSignedToken(newPeserta);
       //   res.status(200).json({
       //     token,
