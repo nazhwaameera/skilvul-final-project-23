@@ -25,9 +25,11 @@ const pesertaSchema = new Schema(
     },
     level: {
         type: Number,
+        default: 1
     },
     exp: {
         type: Number,
+        default: 0
     },
     mentor_id: { type: Schema.Types.ObjectId, ref: "Mentor" },
     quests: [{ type: Schema.Types.ObjectId, ref: "Quest" }],

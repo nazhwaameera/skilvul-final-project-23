@@ -20,10 +20,30 @@ class AdminController {
     }
   }
 
+  static async getPesertas(req, res) {
+    try {
+      const pesertasList = await Peserta.find();
+      console.log(pesertasList);
+      res.status(200).send(pesertasList);
+    } catch (error) {
+      res.status(500).send({ err: error });
+    }
+  }
+
+  static async getMentors(req, res) {
+    try {
+      const mentorsList = await Mentor.find();
+      console.log(mentorsList);
+      res.status(200).send(mentorsList);
+    } catch (error) {
+      res.status(500).send({ err: error });
+    }
+  }
+
   // harusnya di mentor controller kah? atau assign manual aja?
   // ambigukah id yang harus diassign ke peserta_asuh?
   static async createPeserta(req, res, next) {
-    const { nama, email, password, kelas, asal_sekolah, level, exp, mentor_id } = req.body;
+    const { nama, email, password, kelas, asal_sekolah, mentor_id } = req.body;
     const peserta = await Peserta.findOne({ email });
     if (peserta)
       return res.status(403).json({
@@ -32,15 +52,16 @@ class AdminController {
         },
       });
 
-    const newPeserta = new Peserta({ nama, email, password, kelas, asal_sekolah, level, exp, mentor_id });
+    const newPeserta = new Peserta({ nama, email, password, kelas, asal_sekolah, mentor_id });
     try {
       await newPeserta.save();
       const mentor = await Mentor.countDocuments({ _id: req.body.mentor_id });
+      res.status(200).send(newPeserta);
       //console.log(maps)
 
       let result;
       if (mentor) {
-        result = await Mentor.findOneAndUpdate({ _id: req.body.mentor_id }, { $addToSet: { peserta_asuh: req.body.peserta_asuh } }, { new: true });
+        result = await Mentor.findOneAndUpdate({ _id: req.body.mentor_id }, { $addToSet: { peserta_asuh: req.body._id } }, { new: true });
       } else {
         console.log("Mentor id is not exist.");
       }
@@ -55,7 +76,7 @@ class AdminController {
   }
 
   static async createMentor(req, res, next) {
-    const { nama, email, password, no_telp, peserta_asuh } = req.body;
+    const { nama, email, password, no_telp } = req.body;
     const mentor = await Mentor.findOne({ email });
     if (mentor)
       return res.status(403).json({
@@ -65,9 +86,10 @@ class AdminController {
       });
 
     // gimana cara nambahin ke peserta ke dalam peserta asuh?
-    const newMentor = new Mentor({ nama, email, password, no_telp, peserta_asuh });
+    const newMentor = new Mentor({ nama, email, password, no_telp });
     try {
       await newMentor.save();
+      res.status(200).send(newMentor);
       //   const token = getSignedToken(newMentor);
       //   res.status(200).json({
       //     token,

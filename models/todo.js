@@ -10,6 +10,7 @@ const todoSchema = new mongoose.Schema(
     status: {
       type: String, 
       enum: ["Unfinished", "Finished"],
+      default: "Unfinished"
     }
   },
   {

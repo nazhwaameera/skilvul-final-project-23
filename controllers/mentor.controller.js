@@ -5,11 +5,12 @@ const key = process.env.SECRET_KEY;
 
 const jwt = require("jsonwebtoken");
 
-const Admin = require("../models/admin");
 const Peserta = require("../models/peserta");
 const Mentor = require("../models/mentor");
 const Quest = require("../models/quest");
 const Feedback = require("../models/feedback");
+const File = require("../models/file");
+const Map = require("../models/map");
 
 class MentorController {
   static async getMentors(req, res) {
@@ -51,11 +52,13 @@ class MentorController {
     try {
         const body = req.body;
         // mengambil data peserta asuh dari id mentor
-        const peserta_asuh = await Mentor.findOne({_id: body._id}).populate("peserta_asuh");
+        const peserta_asuh = await Mentor.findOne({_id: body._id}).populate("peserta_asuh.quests").sort({ createdAt: -1});
+        // mengambil data quest yang paling akhir dari masing-masing peserta asuh
+        //peserta_asuh.find({}).populate("quests").sort({ createdAt: -1})
         // mengambil data peserta asuh berdasarkan id peserta, bagaimana cara membaca datanya?
-        const pesertasList = await Peserta.find();
-        console.log(pesertasList)
-        res.status(200).send(pesertasList);
+        //const pesertasList = await Peserta.find();
+        console.log(peserta_asuh)
+        res.status(200).send(peserta_asuh);
       } catch (error) {
         res.status(500).send({ err: error });
       }
@@ -65,7 +68,7 @@ class MentorController {
   static async detailPenyelesaian(req, res) {
     try {
         const id_quest = req.params.id_quest;
-        const detailPenyelesaian = await Quest.find({ _id: id_quest});
+        const detailPenyelesaian = await Quest.find({ _id: id_quest}).populate("files");
         res.status(200).send(detailPenyelesaian);
     } catch (error){
         res.status(500).send({ err: error.message });
@@ -75,9 +78,15 @@ class MentorController {
   static async createFeedback(req, res) {
     try {
         const body = req.body;
+        const id_peserta = body.id_peserta;
+        const id_mentor = body.id_mentor;
+        const id_quest = body.id_quest;
         const konten = body.konten;
   
         const feedback = new Feedback({
+          id_peserta = id_peserta,
+          id_mentor = id_mentor,
+          id_quest = id_quest,
           konten: konten,
         });
   
@@ -89,13 +98,36 @@ class MentorController {
       }
   }
 
+  static async createMap(req, res) {
+    try {
+        const body = req.body;
+        const id_peserta = body.id_peserta;
+  
+        const map = new Map({
+          id_peserta: id_peserta,
+        });
+  
+        const saved = await map.save();
+        res.status(201).send(saved);
+      } catch (error) {
+        res.status(500).send({ err: error });
+        console.log(error)
+      }
+  }
+
   static async createQuest(req, res) {
     try {
         const body = req.body;
+        const id_peserta = body.id_peserta;
+        const id_mentor = body.id_mentor;
+        const id_maps = body.id_maps
         const konten = body.konten;
   
         const quest = new Quest({
           konten: konten,
+          id_peserta: id_peserta,
+          id_mentor: id_mentor,
+          id_maps: id_maps
         });
   
         const saved = await quest.save();
