@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DashButton from "../../components/Button/DashboardButton";
 import Navbar1 from "../../components/navbar";
@@ -19,16 +19,15 @@ const Dashboard1 = () => {
       <Container>
         <Row>
           <Col md={4} sm={6} className="button1">
-            <Row style={{marginTop:"50px"}}>           
+            <Stack gap={4} style={{marginTop:"50px"}}>
               <Link to="/Profile" >
-                <DashButton title="Profile" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}}/>
+                <DashButton title="Profile" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}}/>
               </Link>
-              <p>&nbsp;</p>
-              <DashButton title="Quest" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#quest"/>
-              <p>&nbsp;</p>
-              <DashButton title="Mentoring" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#mentoring"/>
-              <p>&nbsp;</p>
-            </Row>
+              <DashButton title="Quest" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}} href="#quest"/>
+
+              <DashButton title="Mentoring" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}} href="#mentoring"/>
+
+            </Stack>
           </Col>
           <Col md={4} sm={6} style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
             <img 
@@ -38,14 +37,16 @@ const Dashboard1 = () => {
                      />
           </Col>
           <Col md={4} sm={6}>
-            <Row  style={{marginTop:"50px"}}>
-              <DashButton title="Feedbacks" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#feedbacks"/>
-              <p>&nbsp;</p>
-              <DashButton title="Achievements" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#achievements"/>
-              <p>&nbsp;</p>
-              <DashButton title="ToDo List" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#todo"/>
-              <p>&nbsp;</p>
-            </Row>
+            <Stack gap={4} style={{marginTop:"50px"}}>
+                <DashButton title="Feedbacks" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}} href="#feedbacks"/>
+
+                <Link to="/Profile" >
+                  <DashButton title="Achievements" style={{borderRadius: "100px", padding: "10px 130px 10px 130px"}} href="#achievements"/>
+                </Link>
+
+                <DashButton title="ToDo List" style={{borderRadius: "100px", padding: "10px 140px 10px 140px"}} href="#todo"/>
+
+            </Stack>
           </Col>
         </Row>
       </Container>
