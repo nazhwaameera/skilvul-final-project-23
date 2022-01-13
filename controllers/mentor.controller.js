@@ -87,7 +87,7 @@ class MentorController {
           id_peserta = id_peserta,
           id_mentor = id_mentor,
           id_quest = id_quest,
-          konten: konten,
+          konten: konten
         });
   
         const saved = await feedback.save();
