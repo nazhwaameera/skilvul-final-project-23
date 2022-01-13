@@ -1,50 +1,73 @@
 import React from "react";
-import { useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
 import ButtonItem from "./components/Button/button";
 import Remedial from "./image/Remedial.png";
-import Loginpop from "./Login";
+import Login1 from "./components/login";
+import logo from "./image/logo.png";
+import "./Onboarding.css"
 
 const Onboarding = () => {
 
-    const [isOpen, setIsOpen] = useState(false);
- 
-    const togglePopup = () => {
-      setIsOpen(!isOpen);
-    }
 
     return (
-        <div>
+        <div className="page">
+            <br/>
+            <br/>
+            <br/>
             <Row>
                 <Col md={4}/>
                 <Col md={4}>
                     <Row>
-                        {/* <Image src={Remedial} width={526} height={430} fluid />
+                        <Image src={Remedial} width={526} height={430} fluid />
                         <div className="d-flex justify-content-center mb-3">
                             <Link to="/home" >
                                 <ButtonItem title="Get Started" style={{borderRadius: "100px"}}/>
                             </Link>
-                        </div> */}
-                        <input
-      type="button"
-      value="Click to Open Popup"
-      onClick={togglePopup}
-    />
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    {isOpen && <Loginpop
-      content={<>
-        <b>Design your Popup</b>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <button>Test button</button>
-      </>}
-      handleClose={togglePopup}
-    />}
+                        </div>
                     </Row>
                 </Col>
                 <Col md={4}/>
             </Row>
+            <br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+            <Container className="about"/>
+            <Container style={{position:"absolute", top:"180%", left:"5%"}}>
+                <Row>
+                    <br/>
+                    <Col md={12}>
+                        <h1>About</h1>
+                    </Col>
+                    <Col md={8}>
+                        <p>Program ini berfokus pada wacana perkembangan seni rupa kontemporer dalam ruang lingkup pelajar, dikemas melalui praktik lintas disiplin ilmu pengetahuan dan metode pembelajaran yang bersifat eksperimentatif. Program Remedial merupakan sebuah platform dimana pelajar tingkat SMA atau sederajatnya bisa memiliki pengalaman berkarya melalui pendekatan artistik yang bervariasi.
+                        </p>
+                    </Col>
+                    <Col md={4}>
+                    <img src={logo} alt="logo" width={300} height={70} style={{marginLeft:"15px"}}/>
+                    </Col>
+                </Row>
+            </Container>
+
+            <br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+            <Container>
+                <Row>
+                    <Col md={4}></Col>
+                    <Col md={4}>
+                        <Row>
+                            <h1 style={{padding: "0px 0px 20px 0px", display:"flex", justifyContent:"center"}}>Login</h1>
+                            <Login1/>
+                        </Row>
+                    </Col>
+                    <Col md={4}></Col>
+                </Row>
+            </Container>
+
+            <br/><br/><br/><br/><br/><br/><br/><br/>
+            
         </div>
     )
 }

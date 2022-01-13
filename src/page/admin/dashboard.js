@@ -42,6 +42,7 @@ const A_Dashboard = () => {
                                 <thead>
                                     <tr>
                                     <th>Mentor</th>
+                                    <th>Email</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -76,6 +77,7 @@ const A_Dashboard = () => {
                                 <thead>
                                     <tr>
                                     <th>Peserta</th>
+                                    <th>Email</th>
                                     </tr>
                                 </thead>
                                 <tbody>

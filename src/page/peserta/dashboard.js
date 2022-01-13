@@ -2,12 +2,14 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ButtonItem from "../../components/Button/button";
+import DashButton from "../../components/Button/DashboardButton";
 import Navbar1 from "../../components/navbar";
 import people from "../../image/people_01.jpg";
+import "./css/dasboard.css"
 
 const Dashboard1 = () => {
   return (
-    <>
+    <><div className="bg">
       <Navbar1 name="verydian" />
       <br />
       <br />
@@ -19,12 +21,12 @@ const Dashboard1 = () => {
           <Col md={4} sm={6} className="button1">
             <Row>           
               <Link to="/Profile" >
-                <ButtonItem title="Profile" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}}/>
+                <DashButton title="Profile" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}}/>
               </Link>
               <p>&nbsp;</p>
-              <ButtonItem title="Quest" radius="20px" href="#quest"/>
+              <DashButton title="Quest" radius="20px" href="#quest"/>
               <p>&nbsp;</p>
-              <ButtonItem title="Mentoring" radius="20px" href="#mentoring"/>
+              <DashButton title="Mentoring" radius="20px" href="#mentoring"/>
               <p>&nbsp;</p>
             </Row>
           </Col>
@@ -37,16 +39,18 @@ const Dashboard1 = () => {
           </Col>
           <Col md={4} sm={6}>
             <Row>
-              <ButtonItem title="Feedbacks" radius="20px" href="#feedbacks"/>
+              <DashButton title="Feedbacks" radius="20px" href="#feedbacks"/>
               <p>&nbsp;</p>
-              <ButtonItem title="Achievements" radius="20px" href="#achievements"/>
+              <DashButton title="Achievements" radius="20px" href="#achievements"/>
               <p>&nbsp;</p>
-              <ButtonItem title="ToDo List" radius="20px" href="#todo"/>
+              <DashButton title="ToDo List" radius="20px" href="#todo"/>
               <p>&nbsp;</p>
             </Row>
           </Col>
         </Row>
       </Container>
+      <br/><br/><br/><br/>
+    </div>
     </>
   );
 };
