@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KadalGoreng/grupprojek-backend-23-24.git"
+    "url": "git+https://github.com/nazhwaameera/skilvul-final-project-23.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KadalGoreng/grupprojek-backend-23-24/issues"
+    "url": "https://github.com/nazhwaameera/skilvul-final-project-23/issues"
   },
-  "homepage": "https://github.com/KadalGoreng/grupprojek-backend-23-24#readme",
+  "homepage": "https://github.com/nazhwaameera/skilvul-final-project-23#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
