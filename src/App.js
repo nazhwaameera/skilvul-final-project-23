@@ -26,6 +26,7 @@ function App() {
 
         {/* mentor */}
         <Route path="/Mentor" element={<M_Dashboard/>} />
+        <Route path="/Detail" element={<M_detail/>} />
       </Routes>
     </div>
   );

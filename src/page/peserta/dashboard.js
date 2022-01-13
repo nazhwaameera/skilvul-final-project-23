@@ -1,15 +1,15 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ButtonItem from "../../components/Button/button";
 import DashButton from "../../components/Button/DashboardButton";
 import Navbar1 from "../../components/navbar";
 import people from "../../image/people_01.jpg";
+import background from "../../image/background.png";
 import "./css/dasboard.css"
 
 const Dashboard1 = () => {
   return (
-    <><div className="bg">
+    <><div style={{ backgroundImage: `url(${background})` }}>
       <Navbar1 name="verydian" />
       <br />
       <br />
@@ -19,14 +19,14 @@ const Dashboard1 = () => {
       <Container>
         <Row>
           <Col md={4} sm={6} className="button1">
-            <Row>           
+            <Row style={{marginTop:"50px"}}>           
               <Link to="/Profile" >
                 <DashButton title="Profile" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}}/>
               </Link>
               <p>&nbsp;</p>
-              <DashButton title="Quest" radius="20px" href="#quest"/>
+              <DashButton title="Quest" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#quest"/>
               <p>&nbsp;</p>
-              <DashButton title="Mentoring" radius="20px" href="#mentoring"/>
+              <DashButton title="Mentoring" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#mentoring"/>
               <p>&nbsp;</p>
             </Row>
           </Col>
@@ -38,12 +38,12 @@ const Dashboard1 = () => {
                      />
           </Col>
           <Col md={4} sm={6}>
-            <Row>
-              <DashButton title="Feedbacks" radius="20px" href="#feedbacks"/>
+            <Row  style={{marginTop:"50px"}}>
+              <DashButton title="Feedbacks" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#feedbacks"/>
               <p>&nbsp;</p>
-              <DashButton title="Achievements" radius="20px" href="#achievements"/>
+              <DashButton title="Achievements" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#achievements"/>
               <p>&nbsp;</p>
-              <DashButton title="ToDo List" radius="20px" href="#todo"/>
+              <DashButton title="ToDo List" style={{borderRadius: "100px", padding: "5px 150px 5px 150px"}} href="#todo"/>
               <p>&nbsp;</p>
             </Row>
           </Col>
