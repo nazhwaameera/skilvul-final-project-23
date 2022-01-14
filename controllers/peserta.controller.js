@@ -190,7 +190,7 @@ class PesertaController {
      
       const file = new File({
         id_peserta: id_peserta,
-        id_maps: id_maps,
+        //id_maps: id_maps,
         id_quest: id_quest,
         file: file
       });
