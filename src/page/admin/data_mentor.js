@@ -6,6 +6,7 @@ import Table from "react-bootstrap/Table";
 import Btnplus from "../../components/Button/buttondata";
 import Navbar1 from "../../components/navbar";
 import { List } from "../../components/List";
+import Add from "../../components/admin/Add_mentor";
 
 const Data_M = () => {
   const [dataMentor, setDataMentor] = useState([]);
@@ -21,7 +22,6 @@ const Data_M = () => {
         console.log(err);
       });
   }, []);
-
 
   return (
     <div>
@@ -54,7 +54,7 @@ const Data_M = () => {
         <br />
         <Col md={9}></Col>
         <Col md={3} style={{ marginLeft: "80%" }}>
-          <Btnplus title={"ADD"} ciri={"outline-success"} /> <Btnplus title={"DELETE"} ciri={"outline-danger"} style={{ marginLeft: "5px" }} />
+          <Add /> {/* <Btnplus title={"ADD"} ciri={"outline-success"} /> <Btnplus title={"DELETE"} ciri={"outline-danger"} style={{ marginLeft: "5px" }} /> */}
         </Col>
       </Row>
       <br />
