@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 
 export const CardComponent = (props) => {
-  const { email, image, name } = props;
+  const { email, image, name, link } = props;
   return (
     <CardGroup className="mb-3">
       <Card>
@@ -10,6 +10,7 @@ export const CardComponent = (props) => {
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Text>{email}</Card.Text>
+          {/* <a href={link}>sss</a> */}
         </Card.Body>
       </Card>
     </CardGroup>

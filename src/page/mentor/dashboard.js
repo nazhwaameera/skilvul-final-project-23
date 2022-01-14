@@ -9,7 +9,7 @@ import { CardComponent } from "../../components/Card";
 const M_Dashboard = () => {
   const [dataUser, setDataUser] = useState([]);
   useEffect(() => {
-    Axios.get("https://randomuser.me/api/?results=2")
+    Axios.get("https://randomuser.me/api/?results=1")
       .then((result) => {
         console.log("data", result.data.results);
         const responseAPI = result.data;
@@ -77,7 +77,7 @@ const M_Dashboard = () => {
             <Row>
               <h3 className="text-light">List Peserta Asuh</h3>
               {dataUser.map((user) => {
-                return <CardComponent name={user.name.first} email={user.email} />;
+                return <CardComponent link={`/movies/${user.id.value}`} key={user.id.value} name={user.name.first} email={user.email} />;
               })}
             </Row>
           </Col>
