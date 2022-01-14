@@ -20,7 +20,7 @@ const Profile = () => {
         <Row>
           <Col md={1} className="d-flex justify-content-start">
               <Link to="/home" >    
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={45} height={55}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black" width={45} height={55}>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
  
@@ -44,7 +44,7 @@ const Profile = () => {
         <Row>
           <Col md={2}></Col>
           <Col md={8}>
-            <ProgressBar now={45}/>
+            <ProgressBar now={45} />
           </Col>
           <Col md={2}></Col>
         </Row>

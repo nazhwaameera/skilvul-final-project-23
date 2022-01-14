@@ -6,6 +6,7 @@ import Navbar1 from "../../components/navbar";
 import people from "../../image/people_01.jpg";
 import background from "../../image/background.png";
 import "./css/dasboard.css"
+import Mentoring from "./mentoring";
 
 const Dashboard1 = () => {
   return (
@@ -26,8 +27,7 @@ const Dashboard1 = () => {
               <Link to="/Quest" >
                 <DashButton title="Quest" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}}/>
               </Link>
-
-              <DashButton title="Mentoring" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}} href="#mentoring"/>
+              <Mentoring/>
 
             </Stack>
           </Col>

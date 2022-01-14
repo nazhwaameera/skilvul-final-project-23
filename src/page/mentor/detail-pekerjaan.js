@@ -10,13 +10,14 @@ const M_detail = () => {
     return (
         <div>
             <Navbar1 name="agus"/>
+            <br/><br/><br/>
             <Container className="py-4">
 
             {/* nama peserta */}
             <Row>
                 <Col md={1} className="d-flex justify-content-start">
                 <Link to="/Mentor" >    
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={45} height={55}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black" width={45} height={55}>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
                 </Link>
