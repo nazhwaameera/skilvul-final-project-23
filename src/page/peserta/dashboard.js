@@ -23,7 +23,9 @@ const Dashboard1 = () => {
               <Link to="/Profile" >
                 <DashButton title="Profile" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}}/>
               </Link>
-              <DashButton title="Quest" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}} href="#quest"/>
+              <Link to="/Quest" >
+                <DashButton title="Quest" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}}/>
+              </Link>
 
               <DashButton title="Mentoring" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}} href="#mentoring"/>
 

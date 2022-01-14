@@ -8,6 +8,7 @@ import M_detail from "./page/mentor/detail-pekerjaan";
 import Data_M from "./page/admin/data_mentor";
 import Data_P from "./page/admin/data_peserta";
 import Onboarding from "./Onboarding";
+import Maps from "./page/peserta/Maps";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         {/* peserta */}
         <Route path="/home" element={<Dashboard1/>} />
         <Route path="/Profile" element={<Profile/>} />
+        <Route path="/Quest" element={<Maps/>} />
 
         {/* admin */}
         <Route path="/Admin" element={<A_Dashboard/>} />

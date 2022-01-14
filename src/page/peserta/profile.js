@@ -14,8 +14,7 @@ const Profile = () => {
       {/* navbar */}
       <Navbar1 name="verydian" />
       <Container>
-        <br />
-        <br />
+        <br /><br /><br /><br />
 
         {/* profile */}
         <Row>
