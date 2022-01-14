@@ -7,8 +7,9 @@ import DashButton from "../../components/Button/DashboardButton";
 import Navbar1 from "../../components/navbar";
 import people from "../../image/people_01.jpg";
 import background from "../../image/background.png";
+import "./css/dasboard.css"
+import Mentoring from "./mentoring";
 import TodoList from "../../components/Pages/TodoList";
-import "./css/dasboard.css";
 
 const theme = {
   color: {

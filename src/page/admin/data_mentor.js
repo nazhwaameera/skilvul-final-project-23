@@ -22,6 +22,7 @@ const Data_M = () => {
       });
   }, []);
 
+
   return (
     <div>
       <Navbar1 />
