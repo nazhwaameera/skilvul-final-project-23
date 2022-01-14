@@ -30,5 +30,4 @@ const questSchema = new mongoose.Schema(
   }
 );
 
-const QuestModel = mongoose.model("Quest", questSchema);
-module.exports = QuestModel;
+module.exports = mongoose.model("Quest", questSchema);

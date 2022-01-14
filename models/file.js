@@ -15,5 +15,4 @@ const fileSchema = new mongoose.Schema(
   }
 );
 
-const FileModel = mongoose.model("File", fileSchema);
-module.exports = FileModel;
+module.exports = mongoose.model("File", fileSchema);

@@ -8,6 +8,10 @@ const jwt = require("jsonwebtoken");
 const Admin = require("../models/admin");
 const Peserta = require("../models/peserta");
 const Mentor = require("../models/mentor");
+const Map = require("../models/map");
+const Quest = require("../models/quest");
+const Todo = require("../models/todo");
+const Feedback = require("../models/feedback");
 
 class AdminController {
   static async getAdmins(req, res) {
@@ -35,6 +39,46 @@ class AdminController {
       const mentorsList = await Mentor.find();
       //console.log(mentorsList);
       res.status(200).send(mentorsList);
+    } catch (error) {
+      res.status(500).send({ err: error });
+    }
+  }
+
+  static async getMaps(req, res) {
+    try {
+      const mapsList = await Map.find();
+      //console.log(mentorsList);
+      res.status(200).send(mapsList);
+    } catch (error) {
+      res.status(500).send({ err: error });
+    }
+  }
+
+  static async getQuests(req, res) {
+    try {
+      const questsList = await Quest.find();
+      //console.log(mentorsList);
+      res.status(200).send(questsList);
+    } catch (error) {
+      res.status(500).send({ err: error });
+    }
+  }
+
+  static async getTodos(req, res) {
+    try {
+      const todosList = await Todo.find();
+      //console.log(mentorsList);
+      res.status(200).send(todosList);
+    } catch (error) {
+      res.status(500).send({ err: error });
+    }
+  }
+
+  static async getFeedbacks(req, res) {
+    try {
+      const feedbacksList = await Feedback.find();
+      //console.log(mentorsList);
+      res.status(200).send(feedbacksList);
     } catch (error) {
       res.status(500).send({ err: error });
     }

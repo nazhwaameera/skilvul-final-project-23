@@ -11,6 +11,7 @@ const Mentor = require("../models/mentor");
 const Quest = require("../models/quest");
 const Feedback = require("../models/feedback");
 const Todo = require("../models/todo");
+const File = require("../models/file");
 
 class PesertaController {
   static async getPesertas(req, res) {
@@ -62,14 +63,9 @@ class PesertaController {
 
   static async mentoring(req, res) {
     try {
-        const email = req.body;
-        const peserta = await Peserta.findOne({ email })
-        .populate({
-          path : 'mentor_id',
-          select : 'nama', 
-          select : 'no_telp'
-        });
-        res.status(200).send(peserta);
+      const nama = req.params.nama;
+      const peserta = await Peserta.findOne({nama: nama}).populate("mentor_id")
+        res.status(200).send(peserta.mentor_id.no_telp);
       } catch (error) {
         res.status(500).send({ err: error.message });
       }
@@ -77,13 +73,8 @@ class PesertaController {
 
   static async lihatFeedbacksbyID(req, res) {
     try {
-        const email = req.body;
-        const peserta = await Peserta.findOne({ email })
-        .select('nama').select('kelas').select('asal_sekolah').select('level').select('exp')
-        .populate({
-          path : 'quest.feedback',
-          select : 'konten',
-        });
+      const nama = req.params.nama;
+      const peserta = await Peserta.findOne({nama: nama}).populate("quests")
         res.status(200).send(peserta);
       } catch (error) {
         res.status(500).send({ err: error.message });
@@ -111,13 +102,8 @@ class PesertaController {
 
   static async lihatTodosbyID(req, res) {
     try {
-        const email = req.body;
-        const peserta = await Peserta.findOne({ email })
-        .populate({
-          path : 'todos',
-          select : 'konten',
-          select : 'status'
-        });
+      const nama = req.params.nama;
+      const peserta = await Peserta.findOne({nama: nama}).populate("todos")
         //menampilkan konten todos tiap peserta
         res.status(200).send(peserta);
       } catch (error) {
@@ -136,7 +122,10 @@ class PesertaController {
           konten: konten
         });
   
-        const saved = await todo.save();
+        const saved = await todo.save(async(err, todos) => {
+          //console.log("ini data peserta", peserta._id)
+          await Peserta.findOneAndUpdate({ _id: req.body.id_peserta }, { $addToSet: { todos: todos._id } }, { new: true });
+        });
         res.status(201).send(saved);
       } catch (error) {
         res.status(500).send({ err: error });
@@ -147,7 +136,7 @@ class PesertaController {
   static async deleteTodo(req, res) {
     try {
       const id = req.params.id_todo;
-      await Todo.deleteOne({_id: id})
+      await Todo.deleteOne({_id: id});
       res.status(200).send({message: `${id} has been Deleted`})
     } catch (error) {
         res.status(500).send({err: error})
@@ -169,10 +158,6 @@ class PesertaController {
       const id = req.params.id_maps;
 
       const activeMap = await Map.findOne({_id: id})
-      .populate({
-        path : 'quests',
-        select : 'konten',
-      });
       console.log(activeMap)
       res.status(200).send(activeMap);
     } catch (error) {
@@ -188,14 +173,14 @@ class PesertaController {
       const id_peserta = body.id_peserta;
       const file = body.file;
      
-      const file = new File({
+      const fileUpload = new File({
         id_peserta: id_peserta,
         //id_maps: id_maps,
         id_quest: id_quest,
         file: file
       });
 
-      const saved = await file.save(async(err, file) => {
+      const saved = await fileUpload.save(async(err, file) => {
         await Quest.findOneAndUpdate({ _id: req.body.id_quest }, { $addToSet: { files: file._id } , $set: { status: "Finished", tanggal_diselesaikan: Date.now()} }, { new: true });
       });
       res.status(201).send(saved);
