@@ -2,8 +2,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 var cors = require('cors')
-app.use(cors())
 
+//const cool = require('cool-ascii-faces');
 const express = require("express");
 
 const routes = require("./routes");
@@ -18,6 +18,10 @@ async function main() {
     await openDBConnection(uri);
 
     const app = express();
+
+    //app.get('/cool', (req, res) => res.send(cool()));
+
+    app.use(cors());
 
     app.use(express.json()); // biar kita bisa ambil request body.
 
