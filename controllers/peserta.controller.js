@@ -63,7 +63,12 @@ class PesertaController {
   static async mentoring(req, res) {
     try {
         const email = req.body;
-        const peserta = await Peserta.findOne({ email }).populate('mentor_id','nama', 'no_telp');
+        const peserta = await Peserta.findOne({ email })
+        .populate({
+          path : 'mentor_id',
+          select : 'nama', 
+          select : 'no_telp'
+        });
         res.status(200).send(peserta);
       } catch (error) {
         res.status(500).send({ err: error.message });
@@ -73,7 +78,12 @@ class PesertaController {
   static async lihatFeedbacksbyID(req, res) {
     try {
         const email = req.body;
-        const peserta = await Peserta.findOne({ email }).select('nama').select('kelas').select('asal_sekolah').select('level').select('exp').populate('quest.feedback');
+        const peserta = await Peserta.findOne({ email })
+        .select('nama').select('kelas').select('asal_sekolah').select('level').select('exp')
+        .populate({
+          path : 'quest.feedback',
+          select : 'konten',
+        });
         res.status(200).send(peserta);
       } catch (error) {
         res.status(500).send({ err: error.message });
@@ -83,7 +93,16 @@ class PesertaController {
   static async lihatAchievementsbyID(req, res) {
     try {
         const email = req.body;
-        const peserta = await Peserta.findOne({ email }).select('nama').select('kelas').select('asal_sekolah').select('level').select('exp').select('quests').select('achievements');
+        const peserta = await Peserta.findOne({ email }).select('nama').select('kelas').select('asal_sekolah').select('level').select('exp')
+        .populate({
+          path : 'quests',
+          select : 'konten',
+          select : 'status'
+        })
+        .populate({
+          path : 'achievements',
+          select : 'title'
+        });
         res.status(200).send(peserta);
       } catch (error) {
         res.status(500).send({ err: error.message });
@@ -93,9 +112,14 @@ class PesertaController {
   static async lihatTodosbyID(req, res) {
     try {
         const email = req.body;
-        const peserta = await Peserta.findOne({ email }).populate("todos");
+        const peserta = await Peserta.findOne({ email })
+        .populate({
+          path : 'todos',
+          select : 'konten',
+          select : 'status'
+        });
         //menampilkan konten todos tiap peserta
-        res.status(200).send(peserta.todos.konten);
+        res.status(200).send(peserta);
       } catch (error) {
         res.status(500).send({ err: error.message });
       }
@@ -134,9 +158,50 @@ class PesertaController {
     try {
       const todoList = await Todo.find();
       console.log(todoList)
-      res.status(200).send(todoList);
+      res.status(200).send(todoList.konten);
     } catch (error) {
       res.status(500).send({ err: error });
+    }
+  }
+
+  static async getActiveMap(req, res) {
+    try {
+      const id = req.params.id_maps;
+
+      const activeMap = await Map.findOne({_id: id})
+      .populate({
+        path : 'quests',
+        select : 'konten',
+      });
+      console.log(activeMap)
+      res.status(200).send(activeMap);
+    } catch (error) {
+      res.status(500).send({ err: error });
+    }
+  }
+
+  static async menyelesaikanQuest(req, res) {
+    try {
+      const body = req.body;
+      const id_maps = req.params.id_maps;
+      const id_quest = req.params.id_quest;
+      const id_peserta = body.id_peserta;
+      const file = body.file;
+     
+      const file = new File({
+        id_peserta: id_peserta,
+        id_maps: id_maps,
+        id_quest: id_quest,
+        file: file
+      });
+
+      const saved = await file.save(async(err, file) => {
+        await Quest.findOneAndUpdate({ _id: req.body.id_quest }, { $addToSet: { files: file._id } , $set: { status: "Finished", tanggal_diselesaikan: Date.now()} }, { new: true });
+      });
+      res.status(201).send(saved);
+    } catch (error) {
+      res.status(500).send({ err: error });
+      console.log(error)
     }
   }
 }

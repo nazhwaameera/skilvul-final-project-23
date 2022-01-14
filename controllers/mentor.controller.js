@@ -52,11 +52,16 @@ class MentorController {
     try {
         const body = req.body;
         // mengambil data peserta asuh dari id mentor
-        const peserta_asuh = await Mentor.findOne({_id: body._id}).populate("peserta_asuh.quests").sort({ createdAt: -1});
-        // mengambil data quest yang paling akhir dari masing-masing peserta asuh
-        //peserta_asuh.find({}).populate("quests").sort({ createdAt: -1})
-        // mengambil data peserta asuh berdasarkan id peserta, bagaimana cara membaca datanya?
-        //const pesertasList = await Peserta.find();
+        const peserta_asuh = await Mentor.findOne({_id: body._id})
+        .populate("peserta_asuh", "nama", "quests")
+        .populate({
+          path : 'peserta_asuh.quests',
+          select : 'konten', 
+          select : 'status',
+          select : 'createdAt',
+          options : { sort : { createdAt : -1 } }
+        })
+        .select("peserta_asuh.nama");
         console.log(peserta_asuh)
         res.status(200).send(peserta_asuh);
       } catch (error) {
@@ -64,11 +69,10 @@ class MentorController {
       }
   }
 
-  // Menampilkan detail penyelesaian dari quest yang dipilih
   static async detailPenyelesaian(req, res) {
     try {
         const id_quest = req.params.id_quest;
-        const detailPenyelesaian = await Quest.find({ _id: id_quest}).populate("files");
+        const detailPenyelesaian = await Quest.find({ _id: id_quest}).select("tanggal_diberikan").select("tanggal_diselesaikan").select("konten").select("status").populate("files","file");
         res.status(200).send(detailPenyelesaian);
     } catch (error){
         res.status(500).send({ err: error.message });
@@ -90,7 +94,9 @@ class MentorController {
           konten: konten
         });
   
-        const saved = await feedback.save();
+        const saved = await feedback.save(async(err, feedback) => {
+          await Quest.findOneAndUpdate({ _id: req.body.id_quest }, { $addToSet: { feedback: feedback._id } }, { new: true });
+        });
         res.status(201).send(saved);
       } catch (error) {
         res.status(500).send({ err: error });
@@ -120,7 +126,7 @@ class MentorController {
         const body = req.body;
         const id_peserta = body.id_peserta;
         const id_mentor = body.id_mentor;
-        const id_maps = body.id_maps
+        const id_maps = body.id_maps;
         const konten = body.konten;
   
         const quest = new Quest({
@@ -130,7 +136,10 @@ class MentorController {
           id_maps: id_maps
         });
   
-        const saved = await quest.save();
+        const saved = await quest.save(async(err, quest) => {
+          await Map.findOneAndUpdate({ _id: req.body.id_maps }, { $addToSet: { quests: quest._id } }, { new: true });
+          await Peserta.findOneAndUpdate({ _id: req.body.id_peserta }, { $addToSet: { quests: quest._id } }, { new: true });
+        });
         res.status(201).send(saved);
       } catch (error) {
         res.status(500).send({ err: error });
