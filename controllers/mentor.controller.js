@@ -85,20 +85,23 @@ class MentorController {
   }
 
   static async createFeedback(req, res) {
-    try {
-        const body = req.body;
-        const id_quest = req.params.id_quest;
-        const konten = body.konten;
+    
+      const body = req.body;
+      const id_quest = req.params.id_quest;
+      const konten = body.konten;
   
-        const feedback = new Feedback({
-          id_quest: id_quest,
-          konten: konten
+      const feedback = new Feedback({
+        id_quest: id_quest,
+        konten: konten
+      });
+        
+      try {
+        await feedback.save(async(err, feedback) => {
+          //console.log("masuk sini")
+          //console.log(feedback._id)
+          await Quest.findOneAndUpdate({ _id:  req.params.id_quest }, { $set: { feedback: feedback._id } }, { new: true });
         });
-  
-        const saved = await feedback.save(async(err, feedback) => {
-          await Quest.findOneAndUpdate({ _id: req.body.id_quest }, { $addToSet: { feedback: feedback._id } }, { new: true });
-        });
-        res.status(201).send(saved);
+        res.status(201).send(feedback);
       } catch (error) {
         res.status(500).send({ err: error });
         console.log(error)
