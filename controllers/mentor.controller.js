@@ -70,7 +70,8 @@ class MentorController {
             model: 'Peserta',
             populate: {
               path: 'quests',
-              model: 'Quest'
+              model: 'Quest',
+              options: { sort: { 'createdAt': 1 }},  
             }
           },
         ])
