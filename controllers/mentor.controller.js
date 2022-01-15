@@ -63,8 +63,17 @@ class MentorController {
         const body = req.body;
         const id_mentor = body.id_mentor;
         // mengambil data peserta asuh dari id mentor
-        const peserta_asuh = await Mentor.findOne({_id: body.id_mentor})
-        .populate("peserta_asuh")
+        const peserta_asuh = await Mentor.findOne({_id: id_mentor})
+        .populate([
+          {
+            path: 'peserta_asuh',
+            model: 'Peserta',
+            populate: {
+              path: 'quests',
+              model: 'Quest'
+            }
+          },
+        ])
         //.populate("peserta_asuh.quests")
         // .select("peserta_asuh.nama");
         // console.log(peserta_asuh)
@@ -77,7 +86,12 @@ class MentorController {
   static async detailPenyelesaian(req, res) {
     try {
         const id_quest = req.params.id_quest;
-        const detailPenyelesaian = await Quest.find({ _id: id_quest}).select("tanggal_diberikan").select("tanggal_diselesaikan").select("konten").select("status").populate("files","file");
+        const detailPenyelesaian = await Quest.find({ _id: id_quest}).populate([
+          {
+            path: 'files',
+            model: 'File'
+          },
+        ]);
         res.status(200).send(detailPenyelesaian);
     } catch (error){
         res.status(500).send({ err: error.message });
