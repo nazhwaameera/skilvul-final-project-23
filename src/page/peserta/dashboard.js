@@ -40,7 +40,9 @@ const Dashboard1 = () => {
           </Col>
           <Col md={4} sm={6}>
             <Stack gap={4} style={{marginTop:"50px"}}>
-                <DashButton title="Feedbacks" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}} href="#feedbacks"/>
+                <Link to="/Feedback" >
+                  <DashButton title="Feedbacks" style={{borderRadius: "100px", padding: "10px 150px 10px 160px"}} href="#feedbacks"/>
+                </Link>
 
                 <Link to="/Profile" >
                   <DashButton title="Achievements" style={{borderRadius: "100px", padding: "10px 130px 10px 130px"}} href="#achievements"/>

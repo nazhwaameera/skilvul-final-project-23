@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import Navbar1 from "../../components/navbar";
-import Btnplus from "../../components/Button/buttondata";
+import Axios from "axios";
+import { List } from "../../components/List";
+import AddP from "../../components/admin/Add_peserta";
 
 const Data_P = () => {
+    const [dataPeserta, setDataPeserta] = useState([]);
+  useEffect(() => {
+    Axios.get("https://immense-cliffs-82383.herokuapp.com/admin/get-peserta")
+      .then((result) => {
+        console.log("data", result.data);
+        const responseAPI = result.data;
+
+        setDataPeserta(responseAPI);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
     return (
         <div>
             <Navbar1/>
@@ -26,21 +42,10 @@ const Data_P = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <td>Uus Andara</td>
-                                <td>us@mail.com</td>
-                                </tr>
-
-                                <tr>
-                                <td>September Iman</td>
-                                <td>Sep@mail.com</td>
-                                </tr>
-
-                                <tr>
-                                <td>Alexa indah</td>
-                                <td>lex.sds@sddd.com</td>
-                                </tr>
-                            </tbody>
+              {dataPeserta.map((peserta) => {
+                return <List link={`${peserta._id}`} key={peserta._id} name={peserta.nama} email={peserta.email} />;
+              })}
+            </tbody>
                             </Table>
                         </Col>
                         <Col md={1}></Col>
@@ -48,8 +53,7 @@ const Data_P = () => {
                         <br/>
                         <Col md={9}></Col>
                         <Col md={3} style={{marginLeft:"80%"}}>
-                            <Btnplus title={"ADD"} ciri={"outline-success"} />{' '}
-                            <Btnplus title={"DELETE"} ciri={"outline-danger"} style={{marginLeft:"5px"}}/>
+                            <AddP/>
                         </Col>
                 </Row>
             <br/>

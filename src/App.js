@@ -9,6 +9,7 @@ import Data_M from "./page/admin/data_mentor";
 import Data_P from "./page/admin/data_peserta";
 import Onboarding from "./Onboarding";
 import Maps from "./page/peserta/Maps";
+import Feedbacks from "./page/peserta/Feedbacks";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/home" element={<Dashboard1/>} />
         <Route path="/Profile" element={<Profile/>} />
         <Route path="/Quest" element={<Maps/>} />
+        <Route path="/Feedback" element={<Feedbacks/>} />
 
         {/* admin */}
         <Route path="/Admin" element={<A_Dashboard/>} />

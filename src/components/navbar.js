@@ -4,7 +4,7 @@ import logo from "../image/logo.png";
 
 const Navbar1 = ({ name }) => {
   return (
-    <div class="shadow rounded" style={{ width:"100%",position:"fixed"}}>
+    <div class="shadow rounded" style={{ width:"100%",position:"fixed", zIndex:"1"}}>
       <Navbar bg="light" variant="light" expand="lg">
         <Container className="d-flex">
           <Navbar.Brand href="/home">

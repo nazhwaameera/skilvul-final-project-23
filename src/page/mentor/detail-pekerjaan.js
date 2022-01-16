@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+// import { Redirect, useParams } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
+import Axios from "axios";
 import Navbar1 from "../../components/navbar";
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import uuser from "../../image/user.png";
 
 const M_detail = () => {
+
+    const [dataUser, setDataUser] = useState([]);
+    useEffect(() => {
+        Axios.get("https://immense-cliffs-82383.herokuapp.com/admin/get-peserta")
+        .then((result) => {
+            console.log("data", result.data);
+            const responseAPI = result.data;
+
+            setDataUser(responseAPI);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, []);
+    
+    let {id} = useParams();
+    console.log(id)
+    const peserta = dataUser.find((user) => user.quests == id)
+    if (peserta === undefined){
+      return <Link to="/*" />
+    }
+
     return (
         <div>
             <Navbar1 name="agus"/>
@@ -27,9 +51,9 @@ const M_detail = () => {
                 </Col>
                 <Col md={4}>
                     <Row style={{marginTop:"10px"}}>
-                    <h3>Verydian T</h3>
-                    <h6>Kelas 11</h6>
-                    <h6>SMA 86 JAKARTA</h6>
+                    <h3>{peserta.konten}</h3>
+                    <h6>{peserta.status}</h6>
+                    {/* <h6>{peserta.asal_sekolah}</h6> */}
                     </Row>
                 </Col>
                 <Col md={3}>
@@ -46,14 +70,16 @@ const M_detail = () => {
                     <h4>DETAIL QUEST</h4>
                 </Col>
                 <br/>
-                <Col md={6}>
+                <Col md={1}></Col>
+                <Col md={5}>
                     <h5>Quest yang diberikan</h5>
                     <p>Jelaskan hal yang menarik perhatianmu belakangan ini</p>
                 </Col>
-                <Col md={6}>
+                <Col md={5}>
                     <h5>Tanggal diberikan : </h5><p>20/12/2021</p>
                     <h5>Tanggal diselesaikan : </h5><p>14/01/2022</p>
                 </Col>
+                <Col md={1}></Col>
                 <br/>
                 <br/>
 
