@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Table from 'react-bootstrap/Table';
+import Axios from "axios";
+import Table from "react-bootstrap/Table";
 import Navbar1 from "../../components/navbar";
+import Btnplus from "../../components/Button/buttondata";
+
 import Axios from "axios";
 import { List } from "../../components/List";
 import AddP from "../../components/admin/Add_peserta";

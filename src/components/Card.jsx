@@ -62,6 +62,7 @@ export const CardComponent = (props) => {
           <Card.Body>
             <Card.Title>{name}</Card.Title>
             <Card.Text>{email}</Card.Text>
+
             <Row>
               <Col md={4}>
       <Button onClick={Maps} value={_id} onChange={(e) => setID(e.target.value)}>{dbut}</Button>

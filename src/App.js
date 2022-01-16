@@ -17,22 +17,25 @@ function App() {
     <div>
       {/* <Navbar1/> */}
       <Routes>
-        <Route path="/" element={<Onboarding/>} />
+        <Route path="/" element={<Onboarding />} />
 
         {/* peserta */}
+
         <Route path="/home" element={<Dashboard1/>} />
         <Route path="/Profile" element={<Profile/>} />
         <Route path="/Quest" element={<Maps/>} />
         <Route path="/Feedback" element={<Feedbacks/>} />
 
+
         {/* admin */}
-        <Route path="/Admin" element={<A_Dashboard/>} />
-        <Route path="/Data_Mentor" element={<Data_M/>} />
-        <Route path="/Data_Peserta" element={<Data_P/>} />
+        <Route path="/Admin" element={<A_Dashboard />} />
+        <Route path="/Data_Mentor" element={<Data_M />} />
+        <Route path="/Data_Peserta" element={<Data_P />} />
 
         {/* mentor */}
-        <Route path="/Mentor" element={<M_Dashboard/>} />
-        <Route path="/Detail" element={<M_detail/>} />
+        <Route path="/Mentor" element={<M_Dashboard />} />
+        <Route path="/Detail" element={<M_detail />} />
+
         <Route exact path="/dashboard/detail-penyelesaian/:id" element={<M_detail />} />
       </Routes>
     </div>

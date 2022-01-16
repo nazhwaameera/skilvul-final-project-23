@@ -3,8 +3,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import Axios from "axios";
 import Navbar1 from "../../components/navbar";
 import Carousel from "react-bootstrap/Carousel";
-import {CardComponent} from "../../components/Card";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { CardComponent } from "../../components/Card";
 
 const M_Dashboard = () => {
   const [dataUser, setDataUser] = useState([]);
@@ -80,8 +80,7 @@ const M_Dashboard = () => {
             <Row>
               <h3 className="text-light">List Peserta Asuh</h3>
               {dataUser.map((user) => {
-                return <CardComponent key={user._id} name={user.nama} email={user.email} link={user.quests} dlink={"Lihat Detail"} dbut={"Buat Maps"}/>;
-              })}
+                return <CardComponent key={user._id} name={user.nama} email={user.email} link={user.quests} dlink={"Lihat Detail"} dbut={"Buat Maps"}/>;           })}
             </Row>
           </Col>
           <Col md={1}></Col>
