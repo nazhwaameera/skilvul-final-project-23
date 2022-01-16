@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar1 from "../../components/navbar";
 import { Col, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import background from "../../image/background.png";
 import uuser from "../../image/user.png";
 import Table from "react-bootstrap/Table";
+import { List } from "../../components/List";
 
 const Profile = () => {
+  const [dataMentor, setDataMentor] = useState([]);
+  useEffect(() => {
+    Axios.get("https://randomuser.me/api/?results=3")
+      .then((result) => {
+        console.log("data", result.data.results);
+        const responseAPI = result.data;
+
+        setDataMentor(responseAPI.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
     <div style={{ backgroundImage: `url(${background})` }}>
@@ -63,20 +79,9 @@ const Profile = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Level 1 - mencari ide abstrak</td>
-                  <td>Desain Dasar</td>
-                </tr>
-
-                <tr>
-                  <td>Level 1 - mencari ide 2D</td>
-                  <td> </td>
-                </tr>
-
-                <tr>
-                  <td>Level 1 - mencari pengertian 3D</td>
-                  <td> </td>
-                </tr>
+              {dataMentor.map((user) => {
+                    return <List key={user.id.value} name={user.name.first} email={user.email} />;
+                  })}
               </tbody>
             </Table>
           </Col>

@@ -16,7 +16,7 @@ export const CardComponent = (props) => {
     const data = {
       _id: _id
     };
-    Axios.post("https://immense-cliffs-82383.herokuapp.com/mentor/create-map", data, {
+    Axios.post("https://mighty-reaches-42366.herokuapp.com/mentor/create-map", data, {
       headers: {
         "content-type": "application/json",
       },

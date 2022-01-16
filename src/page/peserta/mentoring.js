@@ -1,8 +1,10 @@
 import { ThemeProvider } from "@emotion/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import Axios from "axios";
 import DashButton from "../../components/Button/DashboardButton";
 import Modal from "react-modal";
+import { List } from "../../components/List";
 
 const theme = {
   color: {
@@ -33,7 +35,20 @@ const customStyles = {
 // Modal.setAppElement("#yourAppElement");
 
 const Mentoring = (title) => {
-  let subtitle;
+  const [dataMentor, setDataMentor] = useState([]);
+  useEffect(() => {
+    Axios.get("https://randomuser.me/api/?results=3")
+      .then((result) => {
+        console.log("data", result.data.results);
+        const responseAPI = result.data;
+
+        setDataMentor(responseAPI.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -70,20 +85,9 @@ const Mentoring = (title) => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Wacil</td>
-                <td>08808986767678</td>
-              </tr>
-
-              <tr>
-                <td>Adi Dayat</td>
-                <td>08808986767678</td>
-              </tr>
-
-              <tr>
-                <td>Marco</td>
-                <td>08808986767678</td>
-              </tr>
+            {dataMentor.map((user) => {
+                return <List link={`/movies/${user.id.value}`} key={user.id.value} name={user.name.first} email={user.email} />;
+              })}
             </tbody>
           </Table>
         </ThemeProvider>

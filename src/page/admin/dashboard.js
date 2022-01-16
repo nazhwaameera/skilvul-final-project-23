@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
 import Navbar1 from "../../components/navbar";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
+import { List } from "../../components/List";
 
 const A_Dashboard = () => {
+    const [dataMentor, setDataMentor] = useState([]);
+    useEffect(() => {
+      Axios.get("https://agile-wave-39273.herokuapp.com/admin/get-mentor")
+        .then((result) => {
+          console.log("data", result.data);
+          const responseAPI = result.data;
+  
+          setDataMentor(responseAPI);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, []);
+
+    const [dataPeserta, setDataPeserta] = useState([]);
+    useEffect(() => {
+      Axios.get("https://agile-wave-39273.herokuapp.com/admin/get-peserta")
+        .then((result) => {
+          console.log("data", result.data);
+          const responseAPI = result.data;
+  
+          setDataPeserta(responseAPI);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, []);
     return (
         <div>
             {/* navbar */}
@@ -45,20 +74,9 @@ const A_Dashboard = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    <td>Agus Iskandar</td>
-                                    <td>Agus@mail.com</td>
-                                    </tr>
-
-                                    <tr>
-                                    <td>Asep Sulaiman</td>
-                                    <td>Asep@mail.com</td>
-                                    </tr>
-
-                                    <tr>
-                                    <td>Alex Turner</td>
-                                    <td>Alex@yuhuu.com</td>
-                                    </tr>
+                                {dataMentor.map((user) => {
+                      return <List link={`/movies/${user._id}`} key={user._id} name={user.nama} email={user.email} />;
+                    })}
                                 </tbody>
                                 </Table>
                             </Col>
@@ -80,20 +98,9 @@ const A_Dashboard = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    <td>Uus Andara</td>
-                                    <td>us@mail.com</td>
-                                    </tr>
-
-                                    <tr>
-                                    <td>September Iman</td>
-                                    <td>Sep@mail.com</td>
-                                    </tr>
-
-                                    <tr>
-                                    <td>Alexa indah</td>
-                                    <td>lex.sds@sddd.com</td>
-                                    </tr>
+                                {dataPeserta.map((user) => {
+                      return <List link={`/movies/${user._id}`} key={user._id} name={user.nama} email={user.email} />;
+                    })}
                                 </tbody>
                                 </Table>
                             </Col>

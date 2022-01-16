@@ -10,7 +10,7 @@ import AddP from "../../components/admin/Add_peserta";
 const Data_P = () => {
     const [dataPeserta, setDataPeserta] = useState([]);
   useEffect(() => {
-    Axios.get("https://immense-cliffs-82383.herokuapp.com/admin/get-peserta")
+    Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-peserta")
       .then((result) => {
         console.log("data", result.data);
         const responseAPI = result.data;

@@ -37,7 +37,7 @@ const AddP = (title) => {
 
   const [dataMentor, setDataMentor] = useState([]);
   useEffect(() => {
-    Axios.get("https://immense-cliffs-82383.herokuapp.com/admin/get-mentor")
+    Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-mentor")
       .then((result) => {
         console.log("data", result.data);
         const responseAPI = result.data;
@@ -86,7 +86,7 @@ const AddP = (title) => {
       asal_sekolah: asal_sekolah,
       mentor_id: mentor_id
     };
-    Axios.post("https://immense-cliffs-82383.herokuapp.com/admin/create-peserta", data, {
+    Axios.post("https://mighty-reaches-42366.herokuapp.com/admin/create-peserta", data, {
       headers: {
         "content-type": "application/json",
       },

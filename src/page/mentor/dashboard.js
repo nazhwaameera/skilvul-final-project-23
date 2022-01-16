@@ -3,13 +3,13 @@ import { Col, Container, Row } from "react-bootstrap";
 import Axios from "axios";
 import Navbar1 from "../../components/navbar";
 import Carousel from "react-bootstrap/Carousel";
-import { Link } from "react-router-dom";
-import { CardComponent } from "../../components/Card";
+import {CardComponent} from "../../components/Card";
+// import { Link } from "react-router-dom";
 
 const M_Dashboard = () => {
   const [dataUser, setDataUser] = useState([]);
   useEffect(() => {
-    Axios.get("https://agile-wave-39273.herokuapp.com/admin/get-peserta")
+    Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-peserta")
       .then((result) => {
         console.log("data", result.data);
         const responseAPI = result.data;

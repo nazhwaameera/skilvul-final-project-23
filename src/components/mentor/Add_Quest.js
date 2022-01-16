@@ -86,7 +86,7 @@ const AddP = (title) => {
       asal_sekolah: asal_sekolah,
       mentor_id: mentor_id
     };
-    Axios.post("https://immense-cliffs-82383.herokuapp.com/admin/create-peserta", data, {
+    Axios.post("https://mighty-reaches-42366.herokuapp.com/admin/create-peserta", data, {
       headers: {
         "content-type": "application/json",
       },

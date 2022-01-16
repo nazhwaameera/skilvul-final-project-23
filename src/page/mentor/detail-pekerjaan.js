@@ -7,29 +7,31 @@ import Navbar1 from "../../components/navbar";
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import uuser from "../../image/user.png";
+import FeedB from "../../components/mentor/feedbacks";
 
 const M_detail = () => {
 
-    const [dataUser, setDataUser] = useState([]);
+    const [DataUser, setDataUser] = useState([]);
     useEffect(() => {
-        Axios.get("https://immense-cliffs-82383.herokuapp.com/admin/get-peserta")
+      Axios.get("https://hidden-harbor-17802.herokuapp.com/admin/get-peserta")
         .then((result) => {
-            console.log("data", result.data);
-            const responseAPI = result.data;
-
-            setDataUser(responseAPI);
+          console.log("data", result.data);
+          const responseAPI = result.data;
+  
+          setDataUser(responseAPI);
         })
         .catch((err) => {
-            console.log(err);
+          console.log(err);
         });
     }, []);
-    
-    let {id} = useParams();
-    console.log(id)
-    const peserta = dataUser.find((user) => user.quests == id)
-    if (peserta === undefined){
-      return <Link to="/*" />
-    }
+
+    // const { id } = useParams();
+    // const peserta = DataUser.find((u) => u.quests == id);
+    // console.log(peserta);
+    // if (!peserta) {
+    //   // return <Redirect to="/*" />;
+    //   console.log("error");
+    // }
 
     return (
         <div>
@@ -46,27 +48,16 @@ const M_detail = () => {
                     </svg>
                 </Link>
                 </Col>
-                <Col md={4}  style={{display: "flex", justifyContent:"end"}}>
+                <Col md={10}  style={{display: "flex", justifyContent:"center"}}>
                 <img src={uuser} width={120} height={120}  style={{marginBottom:"10px"}}/>
                 </Col>
-                <Col md={4}>
-                    <Row style={{marginTop:"10px"}}>
-                    <h3>{peserta.konten}</h3>
-                    <h6>{peserta.status}</h6>
-                    {/* <h6>{peserta.asal_sekolah}</h6> */}
-                    </Row>
-                </Col>
-                <Col md={3}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={100} height={100}>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                </Col>
+                <Col md={1}></Col>
             </Row>
                 <br/><br/>
             <Row>
 
                 {/* detail quest*/}
-                <Col md={12}>
+                <Col md={12} style={{display:"flex", justifyContent:"center"}}>
                     <h4>DETAIL QUEST</h4>
                 </Col>
                 <br/>
@@ -84,26 +75,36 @@ const M_detail = () => {
                 <br/>
 
                 {/* detail penyelesaian */}
-                <Col md={12}>
+                <Col md={12} style={{display:"flex", justifyContent:"center"}}>
                     <h4>DETAIL PENYELESAIAN</h4>
                 </Col>
                 <Col md={1}></Col>
                 <Col md={10}>
-                    <Table striped bordered hover>
+                    <Table bordered hover>
                             <thead>
                                 <tr>
-                                <th>Telah dimodifikasi</th>
-                                <th>jumatt</th>
+                                <th>Id Quest</th>
+                                <th>Quest</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                <td>File yang diunggah</td>
-                                <td>recent file.png</td>
-                                <td>recent file.png</td>
-                                <td>recent file.png</td>
-                                <td>recent file.png</td>
-                                <td>recent file.png</td>
+                                <td>61e2c9fa02b115651b6ee134</td>
+                                <td>Ceritakan pengalaman paling berkesan selama sekolah online!</td>
+                                {/* <td>{DataUser.quests}</td> */}
+                                {/* <td>{DataUser.quests.konten}</td> */}
+                                </tr>
+                                <tr>
+                                <td>61e3a29f5ff7ec515fde5e11</td>
+                                <td>Ceritakan pengalaman paling berkesan selama sekolah online!</td>
+                                {/* <td>{DataUser.quests}</td> */}
+                                {/* <td>{DataUser.quests.konten}</td> */}
+                                </tr>
+                                <tr>
+                                <td>61e3b1a0623009653958f635</td>
+                                <td>Ceritakan pengalaman paling berkesan selama sekolah online!</td>
+                                {/* <td>{DataUser.quests}</td> */}
+                                {/* <td>{DataUser.quests.konten}</td> */}
                                 </tr>
                             </tbody>
                     </Table>
@@ -113,10 +114,8 @@ const M_detail = () => {
                 <br/>
 
                 {/* button */}
-                <Col style={{display:"flex", justifyContent:"space-around"}}>
-                    <Button variant="secondary">Berikan Feedbacks</Button>{' '}
-                    <Button variant="secondary">Berikan Quest Baru</Button>{' '}
-                    <Button variant="secondary">Naikkan Level</Button>{' '}
+                <Col style={{display:"flex", justifyContent:"center"}}>
+                    <FeedB/>{' '}
                 </Col>
                 
             </Row>

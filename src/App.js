@@ -10,10 +10,12 @@ import Data_P from "./page/admin/data_peserta";
 import Onboarding from "./Onboarding";
 import Maps from "./page/peserta/Maps";
 import Feedbacks from "./page/peserta/Feedbacks";
+// import Navbar1 from "./components/navbar";
 
 function App() {
   return (
     <div>
+      {/* <Navbar1/> */}
       <Routes>
         <Route path="/" element={<Onboarding/>} />
 
@@ -31,6 +33,7 @@ function App() {
         {/* mentor */}
         <Route path="/Mentor" element={<M_Dashboard/>} />
         <Route path="/Detail" element={<M_detail/>} />
+        <Route exact path="/dashboard/detail-penyelesaian/:id" element={<M_detail />} />
       </Routes>
     </div>
   );

@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
-import Btnplus from "../../components/Button/buttondata";
+import Axios from "axios";
 import Navbar1 from "../../components/navbar";
+import { List } from "../../components/List";
+import Btnplus from "../../components/Button/buttondata";
 import Add from "../../components/admin/Add_mentor";
 
 const Data_M = () => {
+    const [dataMentor, setDataMentor] = useState([]);
+    useEffect(() => {
+      Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-mentor")
+        .then((result) => {
+          console.log("data", result.data);
+          const responseAPI = result.data;
+  
+          setDataMentor(responseAPI);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, []);
+
     return (
         <div>
             <Navbar1/>
@@ -27,20 +43,9 @@ const Data_M = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td>Agus Iskandar</td>
-                            <td>Agus@mail.com</td>
-                            </tr>
-
-                            <tr>
-                            <td>Asep Sulaiman</td>
-                            <td>Asep@mail.com</td>
-                            </tr>
-
-                            <tr>
-                            <td>Alex Turner</td>
-                            <td>Alex@yuhuu.com</td>
-                            </tr>
+                        {dataMentor.map((mentor) => {
+                return <List link={`/movies/${mentor._id}`} key={mentor._id} name={mentor.nama} email={mentor.email} />;
+              })}
                         </tbody>
                         </Table>
                     </Col>

@@ -30,7 +30,7 @@ const customStyles = {
   }
 };
 
-const PopQuest = (dqust) => {
+const FeedB = (dqust) => {
  
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -49,19 +49,15 @@ const PopQuest = (dqust) => {
 
   // quest
   const [konten, setKonten] = useState("");
-  const [_id, setID] = useState("");
-  const [mentor, setMentor] = useState("");
-  const [maps, setMaps] = useState("");
+  const [id_quest, setQuest] = useState("");
   const Quest = () =>{
-    console.log(_id)
+    console.log(id_quest)
     console.log(konten)
     const data = {
-      konten: konten
-      // _id: _id,
-      // id_mentor: mentor,
-      // id_maps: maps,
+      konten: konten,
+      id_quest: id_quest
     };
-    Axios.post("https://mighty-reaches-42366.herokuapp.com/mentor/create-quest", data, {
+    Axios.post(`https://hidden-harbor-17802.herokuapp.com/mentor/create-feedback/${id_quest}`, data, {
       headers: {
         "content-type": "application/json",
       },
@@ -73,10 +69,11 @@ const PopQuest = (dqust) => {
         console.log("err", err);
       });
   }; 
+//   const { id_quest } = useParams();
 
  return (
     <div>
-        <Btnplus onClick={openModal} title={"Tambah Quest"} ciri={"secondary"} />
+        <Btnplus onClick={openModal} title={"Feedbacks"} ciri={"secondary"} />
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -85,16 +82,19 @@ const PopQuest = (dqust) => {
         contentLabel="Example Modal"
       >
         <ThemeProvider theme={theme}>
-          <h1>Tambah Soal Quest</h1>
-            {/* <div value={_id} onChange={(e) => setID(e.target.value)}/> */}
+          <h1>Masukkan Saran</h1>
+          {/* <div style={{display: "flex",justifyContent:"center"}}></div> */}
             {/* <div value={mentor} onChange={(e) => setMentor(e.target.value)}/>
             <div value={maps} onChange={(e) => setMaps(e.target.value)}/> */}
-            <input name="konten" value={konten} onChange={(e) => setKonten(e.target.value)}/>
-      <Button onClick={Quest}>Buat Quest</Button>
+            <Form>ID Quest</Form>
+            <input value={id_quest} onChange={(e) => setQuest(e.target.value)}/>
+            <Form>Saran Anda</Form>
+            <input name="konten" value={konten} onChange={(e) => setKonten(e.target.value)}/>{' '}
+      <Button onClick={Quest}>Komentar</Button>
         </ThemeProvider>
       </Modal>
     </div>
   );
 };
 
-export default PopQuest;
+export default FeedB;
