@@ -123,7 +123,7 @@ const Dashboard1 = () => {
               <Stack gap={4} style={{ marginTop: "50px" }}>
                 <DashButton title="Feedbacks" style={{ borderRadius: "100px", padding: "10px 150px 10px 160px" }} href="#feedbacks" />
                 <Link to="/Profile">
-                  <DashButton title="Achievements" style={{ borderRadius: "100px", padding: "10px 150px 10px 125px" }} href="#achievements" />
+                  <DashButton title="Achievements" style={{ borderRadius: "100px", padding: "10px 130px 10px 130px" }} href="#achievements" />
                 </Link>
                 <DashButton onClick={openModal} title="ToDo List" style={{ borderRadius: "100px", padding: "10px 140px 10px 140px" }} href="#todo" />
                 <Modal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
