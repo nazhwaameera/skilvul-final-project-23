@@ -1,12 +1,39 @@
 import React, { useState } from "react";
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage";
 import { Container, Row, Col, ProgressBar } from "react-bootstrap";
+import Axios from "axios";
 import { storage } from "./firebase";
 import Navbar1 from "../../components/navbar";
 import background from "../../image/background.png";
 import "./css/maps.css";
 
 export default function Maps() {
+  const [file, setFile] = useState("");
+
+  const onSubmit = () => {
+    console.log("file", file);
+
+    const data = new FormData();
+    data.append("file", file);
+
+    Axios.post("https://hidden-harbor-17802.herokuapp.com/upload/post", data, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const onFileUpload = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+  };
+
   const [quest, setQuest] = useState(1);
   function goNext() {
     if (quest === 5) return;
@@ -101,9 +128,9 @@ export default function Maps() {
                 <h3>QUEST COMPLETION</h3>
                 <p className="my-1">Maksimal ukuran file 100MB, hanya menerima satu (1) tipe file untuk satu quest</p>
                 <form onSubmit={formHandler}>
-                  <input type="file" className="input" />
+                  <input onChange={(e) => onFileUpload(e)} type="file" className="input" />
                   {quest !== 5 && (
-                    <button type="submit" onClick={goNext}>
+                    <button type="submit" onClick={(goNext, onSubmit)}>
                       Upload
                     </button>
                   )}
