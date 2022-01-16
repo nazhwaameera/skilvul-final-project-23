@@ -3,14 +3,6 @@ const Schema = mongoose.Schema;
 
 const Upload = new Schema(
   {
-    title: {
-      type: String,
-      required: true,
-    },
-    body: {
-      type: String,
-      required: true,
-    },
     file: {
       type: String,
     },
