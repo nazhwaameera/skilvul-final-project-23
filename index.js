@@ -5,7 +5,7 @@ const routes = require("./routes");
 const openDBConnection = require("./helpers/db");
 const multer = require("multer");
 
-var cors = require('cors')
+var cors = require("cors");
 //const cool = require('cool-ascii-faces');
 const port = process.env.PORT || 3000;
 const uri = process.env.MONGO_URI;
@@ -13,7 +13,7 @@ const uri = process.env.MONGO_URI;
 async function main() {
   const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, "files");
+      cb(null, "./");
     },
     filename: (req, file, cb) => {
       cb(null, new Date().getTime() + "-" + file.originalname);
@@ -29,7 +29,6 @@ async function main() {
     await openDBConnection(uri);
 
     const app = express();
-
 
     app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single("file"));
 
