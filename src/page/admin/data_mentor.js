@@ -11,12 +11,12 @@ import Add from "../../components/admin/Add_mentor";
 const Data_M = () => {
   const [dataMentor, setDataMentor] = useState([]);
   useEffect(() => {
-    Axios.get("https://randomuser.me/api/?results=3")
+    Axios.get("https://immense-cliffs-82383.herokuapp.com/admin/get-mentor")
       .then((result) => {
-        console.log("data", result.data.results);
+        console.log("data", result.data);
         const responseAPI = result.data;
 
-        setDataMentor(responseAPI.results);
+        setDataMentor(responseAPI);
       })
       .catch((err) => {
         console.log(err);
@@ -44,8 +44,8 @@ const Data_M = () => {
               </tr>
             </thead>
             <tbody>
-              {dataMentor.map((user) => {
-                return <List link={`/movies/${user.id.value}`} key={user.id.value} name={user.name.first} email={user.email} />;
+              {dataMentor.map((mentor) => {
+                return <List link={`/movies/${mentor._id}`} key={mentor._id} name={mentor.nama} email={mentor.email} />;
               })}
             </tbody>
           </Table>

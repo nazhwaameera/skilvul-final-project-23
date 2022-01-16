@@ -9,12 +9,12 @@ import { CardComponent } from "../../components/Card";
 const M_Dashboard = () => {
   const [dataUser, setDataUser] = useState([]);
   useEffect(() => {
-    Axios.get("https://randomuser.me/api/?results=1")
+    Axios.get("https://agile-wave-39273.herokuapp.com/admin/get-peserta")
       .then((result) => {
-        console.log("data", result.data.results);
+        console.log("data", result.data);
         const responseAPI = result.data;
 
-        setDataUser(responseAPI.results);
+        setDataUser(responseAPI);
       })
       .catch((err) => {
         console.log(err);
@@ -24,9 +24,12 @@ const M_Dashboard = () => {
   return (
     <div>
       <Navbar1 />
+      <br />
+      <br />
+      <br />
 
       {/* carousel */}
-      <Carousel style={{ height: "500px" }}>
+      <Carousel classname="positionStatic" style={{ height: "500px" }}>
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -77,7 +80,7 @@ const M_Dashboard = () => {
             <Row>
               <h3 className="text-light">List Peserta Asuh</h3>
               {dataUser.map((user) => {
-                return <CardComponent link={`/movies/${user.id.value}`} key={user.id.value} name={user.name.first} email={user.email} />;
+                return <CardComponent key={user._id} name={user.nama} email={user.email} link={user.quests} />;
               })}
             </Row>
           </Col>

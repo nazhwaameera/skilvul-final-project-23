@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@emotion/react";
 import Axios from "axios";
 import React, { useState } from "react";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import Modal from "react-modal";
 import Btnplus from "../Button/buttondata";
 import DashButton from "../Button/DashboardButton";
@@ -39,22 +39,30 @@ const Add = (title) => {
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [no_telp, setno_telp] = useState("");
+  const [no_telp, setno_telp] = useState();
 
   const onSubmit = () => {
     console.log(nama);
     console.log(email);
     console.log(password);
+    console.log(no_telp);
 
-    const data = new FormData();
-    data.append("nama", nama);
-    data.append("email", email);
-    data.append("password", password);
-    data.append("no_telp", no_telp);
+    const data = {
+      nama: nama,
+      email: email,
+      password: password,
+      no_telp: no_telp,
+    };
 
-    Axios.post("https://hidden-dusk-51730.herokuapp.com/admin/create-mentor", data, {
+    // const data = new FormData();
+    // data.append("nama", nama);
+    // data.append("email", email);
+    // data.append("password", password);
+    // data.append("no_telp", no_telp);
+
+    Axios.post("https://immense-cliffs-82383.herokuapp.com/admin/create-mentor", data, {
       headers: {
-        "content-type": "multipart/form-data",
+        "content-type": "application/json",
       },
     })
       .then((res) => {
@@ -97,7 +105,7 @@ const Add = (title) => {
               <input value={password} name="pass" onChange={(e) => setPassword(e.target.value)} />
               <Form>No Telepon</Form>
               <input value={no_telp} name="no_telp" onChange={(e) => setno_telp(e.target.value)} />
-              <div>
+              <div className="my-3">
                 <DashButton title="Tambah" onClick={onSubmit} />
               </div>
             </Col>

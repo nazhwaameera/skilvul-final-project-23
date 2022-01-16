@@ -1,59 +1,11 @@
-import React, { useState, useEffect } from "react";
+import Navbar1 from "./navbar";
 import { Col, Container, Row } from "react-bootstrap";
-// import { Link } from "react-router-dom";
-import { Link, useParams } from "react-router-dom";
-import Axios from "axios";
-import Navbar1 from "../../components/navbar";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
+import uuser from "../image/user.png";
 import Table from "react-bootstrap/Table";
-import uuser from "../../image/user.png";
 
-const M_detail = () => {
-  const [DataUser, setDataUser] = useState([]);
-  useEffect(() => {
-    Axios.get("https://agile-wave-39273.herokuapp.com/admin/get-peserta")
-      .then((result) => {
-        console.log("data", result.data);
-        const responseAPI = result.data;
-
-        setDataUser(responseAPI);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  const { id } = useParams();
-  const peserta = DataUser.find((u) => u.quests == id);
-  console.log(peserta);
-  if (!peserta) {
-    // return <Redirect to="/*" />;
-    console.log("error");
-  }
-
-  //   useEffect(() => {
-  //     setTimeout(() => M_detail, 100);
-  //   });
-  //   const [DataQuests, setDataQuest] = useState([]);
-  //   setDataQuest(peserta);
-  //   console.log(DataUser);
-
-  //   const [DetailUser, setDetailUser] = useState([]);
-  //   useEffect(() => {
-  //     Axios.get(`https://agile-wave-39273.herokuapp.com/mentor/dashboard/detail-penyelesaian/${DataUser._id}`)
-  //       .then((result) => {
-  //         console.log("data", result.data);
-  //         const responseAPI = result.data;
-
-  //         setDetailUser(responseAPI);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }, []);
-
-  // Variable berikut akan menampung data movie yang akan kita tampilkan
-
+export const DetailComp = () => {
   return (
     <div>
       <Navbar1 name="agus" />
@@ -75,7 +27,7 @@ const M_detail = () => {
           </Col>
           <Col md={4}>
             <Row style={{ marginTop: "10px" }}>
-              <h3>{peserta.nama}</h3>
+              <h3></h3>
               <h6></h6>
               <h6></h6>
             </Row>
@@ -145,5 +97,3 @@ const M_detail = () => {
     </div>
   );
 };
-
-export default M_detail;

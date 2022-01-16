@@ -7,15 +7,14 @@ import Table from "react-bootstrap/Table";
 import { List } from "../../components/List";
 
 const A_Dashboard = () => {
-
   const [dataMentor, setDataMentor] = useState([]);
   useEffect(() => {
-    Axios.get("https://randomuser.me/api/?results=3")
+    Axios.get("https://immense-cliffs-82383.herokuapp.com/admin/get-mentor")
       .then((result) => {
-        console.log("data", result.data.results);
+        console.log("data", result.data);
         const responseAPI = result.data;
 
-        setDataMentor(responseAPI.results);
+        setDataMentor(responseAPI);
       })
       .catch((err) => {
         console.log(err);
@@ -24,12 +23,12 @@ const A_Dashboard = () => {
 
   const [dataPeserta, setDataPeserta] = useState([]);
   useEffect(() => {
-    Axios.get("https://randomuser.me/api/?results=5")
+    Axios.get("https://immense-cliffs-82383.herokuapp.com/admin/get-peserta")
       .then((result) => {
-        console.log("data", result.data.results);
+        console.log("data", result.data);
         const responseAPI = result.data;
 
-        setDataPeserta(responseAPI.results);
+        setDataPeserta(responseAPI);
       })
       .catch((err) => {
         console.log(err);
@@ -76,7 +75,7 @@ const A_Dashboard = () => {
                   </thead>
                   <tbody>
                     {dataMentor.map((user) => {
-                      return <List link={`/movies/${user.id.value}`} key={user.id.value} name={user.name.first} email={user.email} />;
+                      return <List link={`/movies/${user._id}`} key={user._id} name={user.nama} email={user.email} />;
                     })}
                   </tbody>
                 </Table>
@@ -98,7 +97,7 @@ const A_Dashboard = () => {
                   </thead>
                   <tbody>
                     {dataPeserta.map((user) => {
-                      return <List link={`/movies/${user.id.value}`} key={user.id.value} name={user.name.first} email={user.email} />;
+                      return <List link={`/movies/${user._id}`} key={user._id} name={user.nama} email={user.email} />;
                     })}
                   </tbody>
                 </Table>
