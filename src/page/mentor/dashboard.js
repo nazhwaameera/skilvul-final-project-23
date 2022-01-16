@@ -9,7 +9,7 @@ import { CardComponent } from "../../components/Card";
 const M_Dashboard = () => {
   const [dataUser, setDataUser] = useState([]);
   useEffect(() => {
-    Axios.get("https://agile-wave-39273.herokuapp.com/admin/get-peserta")
+    Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-peserta")
       .then((result) => {
         console.log("data", result.data);
         const responseAPI = result.data;
@@ -80,8 +80,7 @@ const M_Dashboard = () => {
             <Row>
               <h3 className="text-light">List Peserta Asuh</h3>
               {dataUser.map((user) => {
-                return <CardComponent key={user._id} name={user.nama} email={user.email} link={user.quests} />;
-              })}
+                return <CardComponent key={user._id} name={user.nama} email={user.email} link={user.quests} dlink={"Lihat Detail"} dbut={"Buat Maps"}/>;           })}
             </Row>
           </Col>
           <Col md={1}></Col>

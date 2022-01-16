@@ -60,7 +60,8 @@ const Add = (title) => {
     // data.append("password", password);
     // data.append("no_telp", no_telp);
 
-    Axios.post("https://immense-cliffs-82383.herokuapp.com/admin/create-mentor", data, {
+
+    Axios.post("https://mighty-reaches-42366.herokuapp.com/admin/create-mentor", data, {
       headers: {
         "content-type": "application/json",
       },

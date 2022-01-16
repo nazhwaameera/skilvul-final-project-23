@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import React, { useEffect, useState } from "react";
 import Navbar1 from "../../components/navbar";
 import { Col, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import background from "../../image/background.png";
 import uuser from "../../image/user.png";
@@ -94,8 +94,31 @@ const Profile = () => {
         <br />
         <br />
         <br />
-        <br />
-      </div>
+
+
+        {/* table */}
+        <Row>
+          <Col md={1}></Col>
+          <Col md={10}>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Quest Belom Terselesaikan</th>
+                  <th>Achievements</th>
+                </tr>
+              </thead>
+              <tbody>
+              {dataMentor.map((user) => {
+                    return <List key={user.id.value} name={user.name.first} email={user.email} />;
+                  })}
+              </tbody>
+            </Table>
+          </Col>
+          <Col md={1}></Col>
+        </Row>
+      </Container>
+      <br/><br/><br/><br/><br/>
+    </div>
     </>
   );
 };

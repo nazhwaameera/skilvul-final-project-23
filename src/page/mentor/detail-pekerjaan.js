@@ -1,83 +1,121 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+// import { Redirect, useParams } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
-// import { Link } from "react-router-dom";
-import { Link, useParams } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import Axios from "axios";
 import Navbar1 from "../../components/navbar";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import uuser from "../../image/user.png";
+import FeedB from "../../components/mentor/feedbacks";
 
 const M_detail = () => {
-  const [DataUser, setDataUser] = useState([]);
-  useEffect(() => {
-    Axios.get("https://agile-wave-39273.herokuapp.com/admin/get-peserta")
-      .then((result) => {
-        console.log("data", result.data);
-        const responseAPI = result.data;
+    const [DataUser, setDataUser] = useState([]);
+    useEffect(() => {
+      Axios.get("https://hidden-harbor-17802.herokuapp.com/admin/get-peserta")
+        .then((result) => {
+          console.log("data", result.data);
+          const responseAPI = result.data;
+  
+          setDataUser(responseAPI);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, []);
 
-        setDataUser(responseAPI);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    // const { id } = useParams();
+    // const peserta = DataUser.find((u) => u.quests == id);
+    // console.log(peserta);
+    // if (!peserta) {
+    //   // return <Redirect to="/*" />;
+    //   console.log("error");
+    // }
 
-  const { id } = useParams();
-  const peserta = DataUser.find((u) => u.quests == id);
-  console.log(peserta);
-  if (!peserta) {
-    // return <Redirect to="/*" />;
-    console.log("error");
-  }
+    return (
+        <div>
+            <Navbar1 name="agus"/>
+            <br/><br/><br/>
+            <Container className="py-4">
 
-  //   useEffect(() => {
-  //     setTimeout(() => M_detail, 100);
-  //   });
-  //   const [DataQuests, setDataQuest] = useState([]);
-  //   setDataQuest(peserta);
-  //   console.log(DataUser);
+            {/* nama peserta */}
+            <Row>
+                <Col md={1} className="d-flex justify-content-start">
+                <Link to="/Mentor" >    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black" width={45} height={55}>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </Link>
+                </Col>
+                <Col md={10}  style={{display: "flex", justifyContent:"center"}}>
+                <img src={uuser} width={120} height={120}  style={{marginBottom:"10px"}}/>
+                </Col>
+                <Col md={1}></Col>
+            </Row>
+                <br/><br/>
+            <Row>
 
-  //   const [DetailUser, setDetailUser] = useState([]);
-  //   useEffect(() => {
-  //     Axios.get(`https://agile-wave-39273.herokuapp.com/mentor/dashboard/detail-penyelesaian/${DataUser._id}`)
-  //       .then((result) => {
-  //         console.log("data", result.data);
-  //         const responseAPI = result.data;
+                {/* detail quest*/}
+                <Col md={12} style={{display:"flex", justifyContent:"center"}}>
+                    <h4>DETAIL QUEST</h4>
+                </Col>
+                <br/>
+                <Col md={1}></Col>
+                <Col md={5}>
+                    <h5>Quest yang diberikan</h5>
+                    <p>Jelaskan hal yang menarik perhatianmu belakangan ini</p>
+                </Col>
+                <Col md={5}>
+                    <h5>Tanggal diberikan : </h5><p>20/12/2021</p>
+                    <h5>Tanggal diselesaikan : </h5><p>14/01/2022</p>
+                </Col>
+                <Col md={1}></Col>
+                <br/>
+                <br/>
 
-  //         setDetailUser(responseAPI);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }, []);
+                {/* detail penyelesaian */}
+                <Col md={12} style={{display:"flex", justifyContent:"center"}}>
+                    <h4>DETAIL PENYELESAIAN</h4>
+                </Col>
+                <Col md={1}></Col>
+                <Col md={10}>
+                    <Table bordered hover>
+                            <thead>
+                                <tr>
+                                <th>Id Quest</th>
+                                <th>Quest</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>61e2c9fa02b115651b6ee134</td>
+                                <td>Ceritakan pengalaman paling berkesan selama sekolah online!</td>
+                                {/* <td>{DataUser.quests}</td> */}
+                                {/* <td>{DataUser.quests.konten}</td> */}
+                                </tr>
+                                <tr>
+                                <td>61e3a29f5ff7ec515fde5e11</td>
+                                <td>Ceritakan pengalaman paling berkesan selama sekolah online!</td>
+                                {/* <td>{DataUser.quests}</td> */}
+                                {/* <td>{DataUser.quests.konten}</td> */}
+                                </tr>
+                                <tr>
+                                <td>61e3b1a0623009653958f635</td>
+                                <td>Ceritakan pengalaman paling berkesan selama sekolah online!</td>
+                                {/* <td>{DataUser.quests}</td> */}
+                                {/* <td>{DataUser.quests.konten}</td> */}
+                                </tr>
+                            </tbody>
+                    </Table>
+                </Col>
+                <Col md={1}></Col>
+                <br/>
+                <br/>
 
-  // Variable berikut akan menampung data movie yang akan kita tampilkan
-
-  return (
-    <div>
-      <Navbar1 name="agus" />
-      <br />
-      <br />
-      <br />
-      <Container className="py-4">
-        {/* nama peserta */}
-        <Row>
-          <Col md={1} className="d-flex justify-content-start">
-            <Link to="/Mentor">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black" width={45} height={55}>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-              </svg>
-            </Link>
-          </Col>
-          <Col md={4} style={{ display: "flex", justifyContent: "end" }}>
-            <img src={uuser} width={120} height={120} style={{ marginBottom: "10px" }} />
-          </Col>
-          <Col md={4}>
-            <Row style={{ marginTop: "10px" }}>
-              <h3>{peserta.nama}</h3>
-              <h6></h6>
-              <h6></h6>
+                {/* button */}
+                <Col style={{display:"flex", justifyContent:"center"}}>
+                    <FeedB/>{' '}
+                </Col>
             </Row>
           </Col>
           <Col md={3}>
