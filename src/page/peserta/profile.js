@@ -94,31 +94,8 @@ const Profile = () => {
         <br />
         <br />
         <br />
-
-
-        {/* table */}
-        <Row>
-          <Col md={1}></Col>
-          <Col md={10}>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>Quest Belom Terselesaikan</th>
-                  <th>Achievements</th>
-                </tr>
-              </thead>
-              <tbody>
-              {dataMentor.map((user) => {
-                    return <List key={user.id.value} name={user.name.first} email={user.email} />;
-                  })}
-              </tbody>
-            </Table>
-          </Col>
-          <Col md={1}></Col>
-        </Row>
-      </Container>
-      <br/><br/><br/><br/><br/>
-    </div>
+        <br />
+      </div>
     </>
   );
 };

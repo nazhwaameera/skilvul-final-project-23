@@ -1,22 +1,23 @@
 import { ThemeProvider } from "@emotion/react";
 import Axios from "axios";
-import React, {useState, useEffect} from "react";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Form, Row, Col } from "react-bootstrap";
 import Modal from "react-modal";
 import Btnplus from "../Button/buttondata";
+import DashButton from "../Button/DashboardButton";
 
 const theme = {
   color: {
     primary: {
       black: "#484848",
-      red: "#e06262"
-    }
+      red: "#e06262",
+    },
   },
   background: {
     color: {
-      primary: "#c9fffa"
-    }
-  }
+      primary: "#c9fffa",
+    },
+  },
 };
 
 const customStyles = {
@@ -26,15 +27,14 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
-  }
+    transform: "translate(-50%, -50%)",
+  },
 };
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 // Modal.setAppElement("#yourAppElement");
 
 const AddP = (title) => {
-
   const [dataMentor, setDataMentor] = useState([]);
   useEffect(() => {
     Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-mentor")
@@ -48,7 +48,7 @@ const AddP = (title) => {
         console.log(err);
       });
   }, []);
-  
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -69,22 +69,22 @@ const AddP = (title) => {
   const [password, setPassword] = useState("");
   const [kelas, setKelas] = useState("");
   const [asal_sekolah, setAsal_sekolah] = useState("");
-  const [mentor_id, setMentor_id] = useState("")
-  
+  const [mentor_id, setMentor_id] = useState("");
+
   const Submit = () => {
-    console.log(nama)
-    console.log(email)
-    console.log(password)
-    console.log(kelas)
-    console.log(asal_sekolah)    
-    console.log(mentor_id)  
+    console.log(nama);
+    console.log(email);
+    console.log(password);
+    console.log(kelas);
+    console.log(asal_sekolah);
+    console.log(mentor_id);
     const data = {
       nama: nama,
       email: email,
       password: password,
       kelas: kelas,
       asal_sekolah: asal_sekolah,
-      mentor_id: mentor_id
+      mentor_id: mentor_id,
     };
     Axios.post("https://mighty-reaches-42366.herokuapp.com/admin/create-peserta", data, {
       headers: {
@@ -97,34 +97,28 @@ const AddP = (title) => {
       .catch((err) => {
         console.log("err", err);
       });
-  }; 
+  };
 
   return (
     <div>
-        <Btnplus onClick={openModal} title={"Tambah"} ciri={"outline-success"} />
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
+      <Btnplus onClick={openModal} title={"Tambah"} ciri={"outline-success"} />
+      <Modal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
         <ThemeProvider theme={theme}>
           <h1>Tambah Peserta</h1>
-          <Row >
-              <Col>
+          <Row>
+            <Col>
               <Form>Nama</Form>
               <input name="nama_mentor" value={nama} onChange={(e) => setNama(e.target.value)} />
               <Form>Email</Form>
-              <input name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <input name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
               <Form>Password</Form>
-              <input name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <input name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
               <Form>Kelas</Form>
-              <input name="kelas" value={kelas} onChange={(e) => setKelas(e.target.value)}/>
+              <input name="kelas" value={kelas} onChange={(e) => setKelas(e.target.value)} />
               <Form>Asal Sekolah</Form>
-              <input name="sekolah" value={asal_sekolah} onChange={(e) => setAsal_sekolah(e.target.value)}/>
+              <input name="sekolah" value={asal_sekolah} onChange={(e) => setAsal_sekolah(e.target.value)} />
               <Form>Mentor</Form>
-              <input name="mentor" value={mentor_id} onChange={(e) => setMentor_id(e.target.value)}/>
+              <input name="mentor" value={mentor_id} onChange={(e) => setMentor_id(e.target.value)} />
               {/* <Form.Control
                 as="select"
               > */}
@@ -135,7 +129,7 @@ const AddP = (title) => {
                     })}
               </select>
               </Form.Control> */}
-              <br/>
+              <br />
 
               {/* <Dropdown>
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
@@ -147,10 +141,12 @@ const AddP = (title) => {
                     })}
                 </Dropdown.Menu>
                </Dropdown> */}
-
-              </Col>
+              <div className="my-3">
+                <DashButton title="Tambah" onClick={Submit} />
+              </div>
+            </Col>
           </Row>
-          <Button onClick={Submit}>Simpan</Button>
+          {/* <Button onClick={Submit}>Simpan</Button> */}
         </ThemeProvider>
       </Modal>
     </div>
