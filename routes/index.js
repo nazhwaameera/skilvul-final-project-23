@@ -1,7 +1,6 @@
 const express = require("express");
-
+const uploadRoutes = require("./upload");
 const auth = require("../middleware/auth");
-
 const adminRoutes = require("./admin");
 const mentorRoutes = require("./mentor");
 const pesertaRoutes = require("./peserta");
@@ -18,6 +17,8 @@ router.get("/ping", (req, res) => {
   res.status(200).send(ready);
 });
 
+
+router.use("/upload", uploadRoutes);
 router.use("/admin",  adminRoutes);
 router.use("/mentor",  mentorRoutes);
 router.use("/peserta",  pesertaRoutes);
