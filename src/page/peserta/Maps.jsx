@@ -16,6 +16,9 @@ export default function Maps() {
     const data = new FormData();
     data.append("file", file);
 
+    if (quest === 5) return;
+    setQuest((quest) => quest + 1);
+
     Axios.post("https://hidden-harbor-17802.herokuapp.com/upload/post", data, {
       headers: {
         "content-type": "multipart/form-data",
@@ -130,7 +133,7 @@ export default function Maps() {
                 <form onSubmit={formHandler}>
                   <input onChange={(e) => onFileUpload(e)} type="file" className="input" />
                   {quest !== 5 && (
-                    <button type="submit" onClick={(goNext, onSubmit)}>
+                    <button type="submit" onClick={onSubmit}>
                       Upload
                     </button>
                   )}

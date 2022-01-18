@@ -80,7 +80,8 @@ const M_Dashboard = () => {
             <Row>
               <h3 className="text-light">List Peserta Asuh</h3>
               {dataUser.map((user) => {
-                return <CardComponent key={user._id} name={user.nama} email={user.email} link={user.quests} dlink={"Lihat Detail"} dbut={"Buat Maps"}/>;           })}
+                return <CardComponent key={user._id} name={user.nama} email={user.email} link={user.quests} dlink={"Lihat Detail"} dbut={"Buat Maps"} />;
+              })}
             </Row>
           </Col>
           <Col md={1}></Col>
