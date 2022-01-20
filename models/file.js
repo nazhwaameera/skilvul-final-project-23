@@ -6,8 +6,8 @@ const fileSchema = new mongoose.Schema(
     // id_peserta: [{ type: Schema.Types.ObjectId, ref: "Peserta" }],
     id_quest: { type: Schema.Types.ObjectId, ref: "Quest" },
     file: {
-        type: String,
-    }
+      type: String,
+    },
   },
   {
     timestamps: true,

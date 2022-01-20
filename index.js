@@ -10,6 +10,12 @@ var cors = require("cors");
 const port = process.env.PORT || 3000;
 const uri = process.env.MONGO_URI;
 
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
 async function main() {
   const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {

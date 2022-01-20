@@ -43,6 +43,7 @@ class PesertaController {
       const token = getSignedToken(peserta);
       res.status(200).json({
         token,
+        peserta,
       });
     } catch (error) {
       res.status(500).send({ err: error });

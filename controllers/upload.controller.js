@@ -1,11 +1,11 @@
-const Upload = require("../models/upload");
+const File = require("../models/file");
 
 class uploadController {
   static async createPost(req, res) {
     try {
       const file = req.file.path;
 
-      const upload = new Upload({
+      const upload = new File({
         file: file,
       });
 
