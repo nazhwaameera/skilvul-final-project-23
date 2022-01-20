@@ -7,12 +7,14 @@ import { Link } from "react-router-dom";
 import { CardComponent } from "../../components/Card";
 
 const M_Dashboard = () => {
+  const id = localStorage.getItem("id");
+
   const [dataUser, setDataUser] = useState([]);
   useEffect(() => {
-    Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-peserta")
+    Axios.get(`https://backend-23.herokuapp.com/mentor/dashboard/${id}`)
       .then((result) => {
         console.log("data", result.data);
-        const responseAPI = result.data;
+        const responseAPI = result.data.peserta_asuh;
 
         setDataUser(responseAPI);
       })
@@ -80,7 +82,10 @@ const M_Dashboard = () => {
             <Row>
               <h3 className="text-light">List Peserta Asuh</h3>
               {dataUser.map((user) => {
-                return <CardComponent key={user._id} name={user.nama} email={user.email} link={user.quests} dlink={"Lihat Detail"} dbut={"Buat Maps"} />;
+                const submit = () => {
+                  localStorage.setItem("id_user", user._id);
+                };
+                return <CardComponent click={submit} key={user._id} name={user.nama} email={user.email} link={user._id} dlink={"Lihat Detail"} dbut={"Buat Maps"} />;
               })}
             </Row>
           </Col>

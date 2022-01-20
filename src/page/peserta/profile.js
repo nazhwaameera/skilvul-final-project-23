@@ -10,14 +10,19 @@ import Table from "react-bootstrap/Table";
 import { List } from "../../components/List";
 
 const Profile = () => {
+  const nama = localStorage.getItem("nama");
+  const id = localStorage.getItem("id");
+  const kelas = localStorage.getItem("kelas");
+  const asal = localStorage.getItem("asal");
+
   const [dataMentor, setDataMentor] = useState([]);
   useEffect(() => {
-    Axios.get("https://randomuser.me/api/?results=3")
+    Axios.get(`https://backend-23.herokuapp.com/peserta/profil/${id}`)
       .then((result) => {
-        console.log("data", result.data.results);
-        const responseAPI = result.data;
+        console.log("data", result.data.quests);
+        const responseAPI = result.data.quests;
 
-        setDataMentor(responseAPI.results);
+        setDataMentor(responseAPI);
       })
       .catch((err) => {
         console.log(err);
@@ -49,9 +54,9 @@ const Profile = () => {
             </Col>
             <Col md={6}>
               <Row style={{ marginTop: "10px" }}>
-                <h3>Verydian T</h3>
-                <h6>Kelas 11</h6>
-                <h6>SMA 86 JAKARTA</h6>
+                <h3>{nama}</h3>
+                <h6>Kelas {kelas}</h6>
+                <h6>{asal}</h6>
               </Row>
             </Col>
             <Col md={3} style={{ marginTop: "20px" }}>
@@ -82,7 +87,7 @@ const Profile = () => {
                 </thead>
                 <tbody>
                   {dataMentor.map((user) => {
-                    return <List key={user.id.value} name={user.name.first} email={user.email} />;
+                    return <List key={user._id} name={user.konten} email={user.statu} />;
                   })}
                 </tbody>
               </Table>

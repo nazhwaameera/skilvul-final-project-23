@@ -19,7 +19,7 @@ export default function Maps() {
     if (quest === 5) return;
     setQuest((quest) => quest + 1);
 
-    Axios.post("https://hidden-harbor-17802.herokuapp.com/upload/post", data, {
+    Axios.post("https://backend-23.herokuapp.com/upload/post", data, {
       headers: {
         "content-type": "multipart/form-data",
       },
@@ -38,26 +38,6 @@ export default function Maps() {
   };
 
   const [quest, setQuest] = useState(1);
-  function goNext() {
-    if (quest === 5) return;
-    setQuest((quest) => quest + 1);
-  }
-  // function done() {
-  //   // fetch("/api/form", { method: "POST", body: JSON.stringify(data) });
-  //   setQuest((quest) => quest + 1);
-  // }
-
-  // const [fileSelected, setFileSelected] = useState("");
-
-  // const upload = () => {
-  //   const formData = new FormData();
-  //   formData.append("file", fileSelected);
-  //   formData.append("upload_preset", "remedial");
-
-  //   Axios.post("https://api.cloudinary.com/v1_1/dcuyi8m12/image/upload", formData).then((response) => {
-  //     console.log(response);
-  //   });
-  // };
 
   const [progress, setProgress] = useState(0);
 
@@ -82,7 +62,7 @@ export default function Maps() {
       },
       (err) => console.log(err),
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => console.log(url));
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => console.log("sdasdasda", url));
       }
     );
   };
@@ -129,7 +109,7 @@ export default function Maps() {
             <Row className="mt-3 bg-light">
               <Col className="p-5">
                 <h3>QUEST COMPLETION</h3>
-                <p className="my-1">Maksimal ukuran file 100MB, hanya menerima satu (1) tipe file untuk satu quest</p>
+                <p className="my-1">Maksimal ukuran file 20MB, hanya menerima satu (1) tipe file untuk satu quest</p>
                 <form onSubmit={formHandler}>
                   <input onChange={(e) => onFileUpload(e)} type="file" className="input" />
                   {quest !== 5 && (
@@ -137,24 +117,9 @@ export default function Maps() {
                       Upload
                     </button>
                   )}
-                  {/* {quest === 5 && <button type="submit" onClick={done}>Upload</button> } */}
                   <p>{progress}%</p>
                 </form>
                 <hr />
-                {/* <h3>Uploaded: {progress}%</h3> */}
-                {/* <input
-                type="file"
-                onChange={(event) => {
-                  setFileSelected(event.target.files[0]);
-                }}
-              />
-              <button
-                onClick={() => {
-                  upload();
-                }}
-              >
-                Upload File
-              </button> */}
                 <p className="my-2">
                   <b>QUEST SAAT INI:</b> Jelaskan tentang hal yang menarik perhatianmu belakangan ini
                 </p>

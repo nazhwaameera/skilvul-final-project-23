@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import Table from "react-bootstrap/Table";
 import Navbar1 from "../../components/navbar";
-import Btnplus from "../../components/Button/buttondata";
 import { List } from "../../components/List";
 import AddP from "../../components/admin/Add_peserta";
 
 const Data_P = () => {
   const [dataPeserta, setDataPeserta] = useState([]);
   useEffect(() => {
-    Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-peserta")
+    Axios.get("https://backend-23.herokuapp.com/admin/get-peserta")
       .then((result) => {
         console.log("data", result.data);
         const responseAPI = result.data;
@@ -32,7 +31,7 @@ const Data_P = () => {
       <br />
       <Row>
         <Col md={1} className="d-flex justify-content-center">
-          <Link to="/Admin">
+          <Link to="/Admin/dashboard">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black" width={45} height={55}>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>

@@ -78,16 +78,6 @@ const Onboarding = () => {
       <br />
       <br />
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
 
       <Container>
         <Row>
@@ -97,7 +87,7 @@ const Onboarding = () => {
               <h1 id="login" style={{ padding: "0px 0px 20px 0px", display: "flex", justifyContent: "center" }}>
                 Login
               </h1>
-              <Login1 />
+              <Login1 endpoint="https://backend-23.herokuapp.com/peserta/login" loc="/home" />
             </Row>
           </Col>
           <Col md={4}></Col>

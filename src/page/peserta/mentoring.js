@@ -37,12 +37,12 @@ const customStyles = {
 const Mentoring = (title) => {
   const [dataMentor, setDataMentor] = useState([]);
   useEffect(() => {
-    Axios.get("https://randomuser.me/api/?results=3")
+    Axios.get("https://backend-23.herokuapp.com/admin/get-mentor")
       .then((result) => {
-        console.log("data", result.data.results);
+        console.log("data", result.data);
         const responseAPI = result.data;
 
-        setDataMentor(responseAPI.results);
+        setDataMentor(responseAPI);
       })
       .catch((err) => {
         console.log(err);
@@ -79,9 +79,8 @@ const Mentoring = (title) => {
               </tr>
             </thead>
             <tbody>
-
-            {dataMentor.map((user) => {
-                return <List link={`/movies/${user.id.value}`} key={user.id.value} name={user.name.first} email={user.email} />;
+              {dataMentor.map((user) => {
+                return <List key={user._id} name={user.nama} email={user.no_telp} />;
               })}
             </tbody>
           </Table>

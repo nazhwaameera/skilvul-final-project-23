@@ -4,19 +4,18 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Link, Redirect, useParams } from "react-router-dom";
 import Axios from "axios";
 import Navbar1 from "../../components/navbar";
-import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import uuser from "../../image/user.png";
 import FeedB from "../../components/mentor/feedbacks";
+import { List } from "../../components/List";
 
 const M_detail = () => {
   const [DataUser, setDataUser] = useState([]);
   useEffect(() => {
-    Axios.get("https://hidden-harbor-17802.herokuapp.com/admin/get-peserta")
+    Axios.get("https://backend-23.herokuapp.com/admin/get-peserta")
       .then((result) => {
-        console.log("data", result.data);
+        // console.log("data", result.data);
         const responseAPI = result.data;
-
         setDataUser(responseAPI);
       })
       .catch((err) => {
@@ -24,13 +23,27 @@ const M_detail = () => {
       });
   }, []);
 
-  // const { id } = useParams();
-  // const peserta = DataUser.find((u) => u.quests == id);
-  // console.log(peserta);
-  // if (!peserta) {
-  //   // return <Redirect to="/*" />;
-  //   console.log("error");
-  // }
+  const id_user = localStorage.getItem("id_user");
+  const [dataQuest, setDataQuest] = useState([]);
+  useEffect(() => {
+    Axios.get(`https://backend-23.herokuapp.com/peserta/profil/${id_user}`)
+      .then((result) => {
+        console.log("data", result.data.quests);
+        const responseAPI = result.data.quests;
+        setDataQuest(responseAPI);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const { id } = useParams();
+  const peserta = DataUser.find((u) => u.quests == id);
+  console.log(peserta);
+  if (!peserta) {
+    // return <Redirect to="/*" />;
+    console.log("error");
+  }
 
   return (
     <div>
@@ -90,24 +103,9 @@ const M_detail = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>61e2c9fa02b115651b6ee134</td>
-                  <td>Ceritakan pengalaman paling berkesan selama sekolah online!</td>
-                  {/* <td>{DataUser.quests}</td> */}
-                  {/* <td>{DataUser.quests.konten}</td> */}
-                </tr>
-                <tr>
-                  <td>61e3a29f5ff7ec515fde5e11</td>
-                  <td>Ceritakan pengalaman paling berkesan selama sekolah online!</td>
-                  {/* <td>{DataUser.quests}</td> */}
-                  {/* <td>{DataUser.quests.konten}</td> */}
-                </tr>
-                <tr>
-                  <td>61e3b1a0623009653958f635</td>
-                  <td>Ceritakan pengalaman paling berkesan selama sekolah online!</td>
-                  {/* <td>{DataUser.quests}</td> */}
-                  {/* <td>{DataUser.quests.konten}</td> */}
-                </tr>
+                {dataQuest.map((quest) => {
+                  return <List key={quest._id} name={quest._id} email={quest.konten} />;
+                })}
               </tbody>
             </Table>
           </Col>

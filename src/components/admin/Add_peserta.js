@@ -37,7 +37,7 @@ const customStyles = {
 const AddP = (title) => {
   const [dataMentor, setDataMentor] = useState([]);
   useEffect(() => {
-    Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-mentor")
+    Axios.get("https://backend-23.herokuapp.com/admin/get-mentor")
       .then((result) => {
         console.log("data", result.data);
         const responseAPI = result.data;
@@ -72,12 +72,6 @@ const AddP = (title) => {
   const [mentor_id, setMentor_id] = useState("");
 
   const Submit = () => {
-    console.log(nama);
-    console.log(email);
-    console.log(password);
-    console.log(kelas);
-    console.log(asal_sekolah);
-    console.log(mentor_id);
     const data = {
       nama: nama,
       email: email,
@@ -86,7 +80,7 @@ const AddP = (title) => {
       asal_sekolah: asal_sekolah,
       mentor_id: mentor_id,
     };
-    Axios.post("https://mighty-reaches-42366.herokuapp.com/admin/create-peserta", data, {
+    Axios.post("https://backend-23.herokuapp.com/admin/create-peserta", data, {
       headers: {
         "content-type": "application/json",
       },
@@ -142,11 +136,10 @@ const AddP = (title) => {
                 </Dropdown.Menu>
                </Dropdown> */}
               <div className="my-3">
-                <DashButton title="Tambah" onClick={Submit} />
+                <DashButton type="submit" title="Tambah" onClick={Submit} />
               </div>
             </Col>
           </Row>
-          {/* <Button onClick={Submit}>Simpan</Button> */}
         </ThemeProvider>
       </Modal>
     </div>

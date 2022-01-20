@@ -9,7 +9,7 @@ import { List } from "../../components/List";
 const A_Dashboard = () => {
   const [dataMentor, setDataMentor] = useState([]);
   useEffect(() => {
-    Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-mentor")
+    Axios.get("https://nameless-escarpment-09725.herokuapp.com/admin/get-mentor")
       .then((result) => {
         console.log("data", result.data);
         const responseAPI = result.data;
@@ -23,7 +23,7 @@ const A_Dashboard = () => {
 
   const [dataPeserta, setDataPeserta] = useState([]);
   useEffect(() => {
-    Axios.get("https://mighty-reaches-42366.herokuapp.com/admin/get-peserta")
+    Axios.get("https://nameless-escarpment-09725.herokuapp.com/admin/get-peserta")
       .then((result) => {
         console.log("data", result.data);
         const responseAPI = result.data;

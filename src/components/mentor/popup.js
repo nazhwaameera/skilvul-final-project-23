@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@emotion/react";
 import Axios from "axios";
-import React, {useState, useEffect} from "react";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import Modal from "react-modal";
 import Btnplus from "../Button/buttondata";
 
@@ -9,14 +9,14 @@ const theme = {
   color: {
     primary: {
       black: "#484848",
-      red: "#e06262"
-    }
+      red: "#e06262",
+    },
   },
   background: {
     color: {
-      primary: "#c9fffa"
-    }
-  }
+      primary: "#c9fffa",
+    },
+  },
 };
 
 const customStyles = {
@@ -26,12 +26,11 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
-  }
+    transform: "translate(-50%, -50%)",
+  },
 };
 
 const PopQuest = (dqust) => {
- 
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -52,16 +51,16 @@ const PopQuest = (dqust) => {
   const [_id, setID] = useState("");
   const [mentor, setMentor] = useState("");
   const [maps, setMaps] = useState("");
-  const Quest = () =>{
-    console.log(_id)
-    console.log(konten)
+  const Quest = () => {
+    console.log(_id);
+    console.log(konten);
     const data = {
-      konten: konten
+      konten: konten,
       // _id: _id,
       // id_mentor: mentor,
       // id_maps: maps,
     };
-    Axios.post("https://mighty-reaches-42366.herokuapp.com/mentor/create-quest", data, {
+    Axios.post("https://backend-23.herokuapp.com/mentor/create-quest", data, {
       headers: {
         "content-type": "application/json",
       },
@@ -72,25 +71,19 @@ const PopQuest = (dqust) => {
       .catch((err) => {
         console.log("err", err);
       });
-  }; 
+  };
 
- return (
+  return (
     <div>
-        <Btnplus onClick={openModal} title={"Tambah Quest"} ciri={"secondary"} />
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
+      <Btnplus onClick={openModal} title={"Tambah Quest"} ciri={"secondary"} />
+      <Modal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
         <ThemeProvider theme={theme}>
           <h1>Tambah Soal Quest</h1>
-            {/* <div value={_id} onChange={(e) => setID(e.target.value)}/> */}
-            {/* <div value={mentor} onChange={(e) => setMentor(e.target.value)}/>
+          {/* <div value={_id} onChange={(e) => setID(e.target.value)}/> */}
+          {/* <div value={mentor} onChange={(e) => setMentor(e.target.value)}/>
             <div value={maps} onChange={(e) => setMaps(e.target.value)}/> */}
-            <input name="konten" value={konten} onChange={(e) => setKonten(e.target.value)}/>
-      <Button onClick={Quest}>Buat Quest</Button>
+          <input name="konten" value={konten} onChange={(e) => setKonten(e.target.value)} />
+          <Button onClick={Quest}>Buat Quest</Button>
         </ThemeProvider>
       </Modal>
     </div>

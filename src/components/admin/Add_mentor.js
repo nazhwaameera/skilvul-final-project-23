@@ -54,14 +54,7 @@ const Add = (title) => {
       no_telp: no_telp,
     };
 
-    // const data = new FormData();
-    // data.append("nama", nama);
-    // data.append("email", email);
-    // data.append("password", password);
-    // data.append("no_telp", no_telp);
-
-
-    Axios.post("https://mighty-reaches-42366.herokuapp.com/admin/create-mentor", data, {
+    Axios.post("https://backend-23.herokuapp.com/admin/create-mentor", data, {
       headers: {
         "content-type": "application/json",
       },
@@ -101,13 +94,13 @@ const Add = (title) => {
               <Form>Nama</Form>
               <input value={nama} name="nama_mentor" onChange={(e) => setNama(e.target.value)} />
               <Form>Email</Form>
-              <input value={email} name="email" onChange={(e) => setEmail(e.target.value)} />
+              <input value={email} name="email" onChange={(e) => console.log(e.target.value)} />
               <Form>Password</Form>
               <input value={password} name="pass" onChange={(e) => setPassword(e.target.value)} />
               <Form>No Telepon</Form>
               <input value={no_telp} name="no_telp" onChange={(e) => setno_telp(e.target.value)} />
               <div className="my-3">
-                <DashButton title="Tambah" onClick={onSubmit} />
+                <DashButton type="submit" title="Tambah" onClick={onSubmit} />
               </div>
             </Col>
           </Row>

@@ -3,6 +3,19 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../image/logo.png";
 
 const Navbar1 = ({ name }) => {
+  const nama = localStorage.getItem("nama");
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("admin");
+    localStorage.removeItem("mentor");
+    localStorage.removeItem("nama");
+    localStorage.removeItem("id");
+    localStorage.removeItem("kelas");
+    localStorage.removeItem("asal");
+    localStorage.removeItem("id_user");
+    window.location.href = "/home";
+  };
+
   return (
     <div class="shadow rounded" style={{ width: "100%", position: "fixed", zIndex: "1" }}>
       <Navbar bg="light" variant="light" expand="lg">
@@ -17,7 +30,7 @@ const Navbar1 = ({ name }) => {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={30} height={20}>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
-              Hello {name}
+              Hello {nama}
             </Nav.Link>
             <Nav>
               {/* notification */}
@@ -34,7 +47,7 @@ const Navbar1 = ({ name }) => {
 
               {/* logout */}
               <Nav.Link href="#logout">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={25} height={25}>
+                <svg onClick={handleLogout} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width={25} height={25}>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
               </Nav.Link>
