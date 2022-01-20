@@ -60,8 +60,8 @@ class MentorController {
 
   static async showPeserta(req, res) {
     try {
-      const body = req.body;
-      const id_mentor = body.id_mentor;
+      // const body = req.body;
+      const id_mentor = req.params.id_mentor;
       // mengambil data peserta asuh dari id mentor
       const peserta_asuh = await Mentor.findOne({ _id: id_mentor }).populate([
         {
