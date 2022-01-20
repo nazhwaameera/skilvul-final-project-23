@@ -52,9 +52,9 @@ class PesertaController {
 
   static async lihatProfil(req, res) {
     try {
-      const nama = req.params.nama;
+      const id = req.params.id;
 
-      const profil = await Peserta.findOne({ nama: nama }).populate([
+      const profil = await Peserta.findOne({ _id: id }).populate([
         {
           path: "quests",
           model: "Quest",

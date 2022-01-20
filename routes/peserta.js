@@ -4,7 +4,7 @@ const router = express.Router();
 const PesertaController = require("../controllers/peserta.controller");
 
 router.post("/login", PesertaController.loginPeserta);
-router.get("/profil/:nama", PesertaController.lihatProfil);
+router.get("/profil/:id", PesertaController.lihatProfil);
 router.get("/mentoring/:nama", PesertaController.mentoring);
 router.get("/feedbacks/:nama", PesertaController.lihatFeedbacksbyID);
 router.get("/profil/:nama", PesertaController.lihatAchievementsbyID);
