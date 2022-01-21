@@ -2,7 +2,7 @@
 
 Login User :
 
-- Email: eldodo@gmail.com
+- Email: eldo@gmail.com
 - Password: eldo123
 
 Login Admin :
